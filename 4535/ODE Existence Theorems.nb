@@ -1,0 +1,453 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14878,        445]
+NotebookOptionsPosition[     12312,        391]
+NotebookOutlinePosition[     12788,        409]
+CellTagsIndexPosition[     12745,        406]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ODE Theorems", "Title",
+ CellChangeTimes->{{3.868969974574915*^9, 3.868970011142788*^9}, {
+  3.8689718323029346`*^9, 3.8689718329596653`*^9}, {3.870877057886918*^9, 
+  3.870877077751191*^9}, {3.870878295862239*^9, 3.8708783020852265`*^9}, {
+  3.870878535111331*^9, 
+  3.870878535655899*^9}},ExpressionUUID->"913952a7-d0ac-4226-ab6f-\
+48622723466e"],
+
+Cell["\<\
+Our informal theorem below needs some more details to become a real theorem. \
+\>", "Text",
+ CellChangeTimes->{{3.8708783067774687`*^9, 
+  3.8708783658183503`*^9}},ExpressionUUID->"c4b16720-8614-4386-995a-\
+3d3da7597794"],
+
+Cell[TextData[{
+ "Informal Theorem\nAn ODE ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], 
+     RowBox[{"(", "t", ")"}]}], "=", 
+    RowBox[{"f", "(", 
+     RowBox[{"t", ",", 
+      RowBox[{"y", "(", "t", ")"}]}], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"813d04f5-0318-40f6-8a37-6be328a0ad22"],
+ " with an initial condition ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], 
+     RowBox[{"(", 
+      SubscriptBox["t", "0"], ")"}]}], "=", 
+    SubscriptBox["y", "0"]}], TraditionalForm]],ExpressionUUID->
+  "b9bddbe8-c6bf-4260-afb0-0eccbbe77833"],
+ " has a unique solution on some interval around ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["t", "0"], TraditionalForm]],ExpressionUUID->
+  "500feb13-49b7-41ab-bd6f-ed0ea1a66eda"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", ":", 
+     RowBox[{"\[DoubleStruckCapitalR]", "\[Times]", 
+      SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}]}], "\[Rule]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], TraditionalForm]],
+  ExpressionUUID->"b30a5778-0ae9-4d4a-acbe-d0c4a7c6dfad"],
+ " is smooth."
+}], "Abstract",
+ CellChangeTimes->{{3.8708770816673837`*^9, 3.8708772057760105`*^9}, {
+  3.8708787684447575`*^9, 
+  3.8708787693346977`*^9}},ExpressionUUID->"94acf09b-9c9a-4d27-a1ef-\
+fb9c42f7e635"],
+
+Cell["\<\
+We are eventually going to have a number of theorems.  It would also be nice \
+to make our theorems apply to ODE systems which include higher derivatives.  \
+The very first thing we need are some definitions. \
+\>", "Text",
+ CellChangeTimes->{{3.8708783724668407`*^9, 3.870878514213668*^9}, {
+  3.870878565333927*^9, 3.870878591872929*^9}, {3.8708787226882963`*^9, 
+  3.8708787604800615`*^9}},ExpressionUUID->"ec4a6fe2-c3bc-4f6c-9601-\
+e58f6cede46c"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+ODE: 1st Order Ordinary Differential Equation
+Definition\
+\>", "Section",
+ CellChangeTimes->{{3.870878786277466*^9, 3.870878834445222*^9}, {
+  3.8708789807923117`*^9, 3.870878996351375*^9}, {3.87087946469683*^9, 
+  3.870879469940175*^9}},ExpressionUUID->"1a7feb8e-4855-494f-9f31-\
+ae3e8d2ff0a1"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", ":", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"a", ",", "b"}], ")"}], "\[Times]", 
+      SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}]}], "\[Rule]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2babe6dc-4660-4848-b405-37d1473413ca"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], "=", 
+    RowBox[{"f", "(", 
+     RowBox[{"t", ",", "y"}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e77b6d2f-a652-453f-97d7-1c1d134288b2"],
+ " is an ODE. "
+}], "Text",
+ CellChangeTimes->{{3.870878809369281*^9, 3.8708789376157207`*^9}, {
+  3.8708789999730997`*^9, 
+  3.8708790651915674`*^9}},ExpressionUUID->"34685f7c-5a4c-427f-81f7-\
+9dcd894a5786"],
+
+Cell[TextData[{
+ "An ODE gives the slopes ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], 
+    RowBox[{"(", "t", ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "07725b33-0b02-44c1-8ee4-1592744f5aba"],
+ ".  It does not tell you where the solution ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"y", "(", "t", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "aeca0067-79e5-450a-92e4-03a8bf2304cd"],
+ " starts."
+}], "Item",
+ InitializationCell->True,
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.8708790679725275`*^9, 3.8708791056081176`*^9}, {3.870879172775854*^9, 
+  3.8708792345812798`*^9}},ExpressionUUID->"29f2f68b-571d-4725-93bd-\
+5a9e14fe08f0"],
+
+Cell[CellGroupData[{
+
+Cell["It is natural to ask what sort of functions f make sense! ", "Item",
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.8708790679725275`*^9, 
+  3.8708791056081176`*^9}},ExpressionUUID->"5d3a6124-c543-4a65-a585-\
+e5d3e52b0a86"],
+
+Cell["It is also natural to ask what \"make sense\" means!", "Subitem",
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.8708790679725275`*^9, 
+  3.870879091060932*^9}},ExpressionUUID->"167e2066-f4cb-43e2-b1ae-\
+5a968ee5b7f4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Autonomous ODE: 
+Definition\
+\>", "Section",
+ CellChangeTimes->{{3.870878786277466*^9, 3.870878834445222*^9}, {
+  3.8708789807923117`*^9, 3.870878996351375*^9}, {3.87087946469683*^9, 
+  3.870879469940175*^9}, {3.8708795104257107`*^9, 
+  3.8708795173195477`*^9}},ExpressionUUID->"bba3b592-6fb6-43c9-bba9-\
+3787639863a6"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", ":", 
+     SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], "\[Rule]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "6341aeb8-6bf9-4303-b873-f85fa9441c42"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], "=", 
+    RowBox[{"f", "(", "y", ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f5bba5cb-23d8-4c0c-85eb-ca6f56d885a8"],
+ " is an autonomous ODE. "
+}], "Text",
+ CellChangeTimes->{{3.870878809369281*^9, 3.8708789376157207`*^9}, {
+  3.8708789999730997`*^9, 3.8708790651915674`*^9}, {3.8708795203939667`*^9, 
+  3.8708795334554787`*^9}},ExpressionUUID->"21c9d084-6916-41bd-80b3-\
+09f32b523d0f"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Autonomous ODEs describe systems without explicit time dependence.\
+\>", "Item",
+ InitializationCell->True,
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.8708790679725275`*^9, 3.8708791056081176`*^9}, {3.870879172775854*^9, 
+  3.8708792345812798`*^9}, {3.8708795410065956`*^9, 
+  3.8708795906560526`*^9}},ExpressionUUID->"6c6711f5-28b0-41f2-883e-\
+c5477846f8a1"],
+
+Cell["The underlying system does not change with time.", "Subitem",
+ InitializationCell->True,
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.8708790679725275`*^9, 3.8708791056081176`*^9}, {3.870879172775854*^9, 
+  3.8708792345812798`*^9}, {3.8708795410065956`*^9, 
+  3.8708796140074005`*^9}},ExpressionUUID->"8155ecd8-3974-444f-b361-\
+165ab96bf803"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+IVP: 1st Order Initial Value Problem
+Definition\
+\>", "Section",
+ CellChangeTimes->{{3.870878786277466*^9, 3.870878834445222*^9}, {
+  3.8708794737433414`*^9, 
+  3.87087947949242*^9}},ExpressionUUID->"d71098f5-c950-4da2-9d39-\
+1c7e2f9a5ff9"],
+
+Cell[TextData[{
+ "An ODE ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], "=", 
+    RowBox[{"f", "(", 
+     RowBox[{"t", ",", "y"}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "121c9d88-5b3e-4ff8-9562-b5d5b1a2a2fd"],
+ " with an initial condition ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "(", 
+     SubscriptBox["t", "0"], ")"}], "=", 
+    SubscriptBox["y", "0"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f6cfe08b-0118-402e-8cb8-84f72a288e50"],
+ "  with ",
+ Cell[BoxData[
+  FormBox[Cell[TextData[{
+    Cell[BoxData[
+     FormBox[
+      RowBox[{"a", "<", 
+       SubscriptBox["t", "0"], "<", "b"}], TraditionalForm]],
+     FormatType->TraditionalForm,ExpressionUUID->
+     "83b9590b-8835-445d-b37c-145cb2bf35a7"],
+    " "
+   }],ExpressionUUID->"93eaa7ac-a6a9-4e98-98d0-9ccc968bf69e"], 
+   TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "459d7ea6-7171-4f95-a9e8-77996b1bdca8"],
+ "is an IVP. "
+}], "Text",
+ CellChangeTimes->{{3.870878809369281*^9, 3.8708789376157207`*^9}, {
+  3.870879249270994*^9, 
+  3.870879268437183*^9}},ExpressionUUID->"0cf8ec3e-9e0b-419d-8852-\
+886ea9cb5f94"],
+
+Cell[TextData[{
+ "The ODE gives the slopes ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], 
+    RowBox[{"(", "t", ")"}]}], TraditionalForm]],ExpressionUUID->
+  "7b483ded-d214-4a22-98db-77c9f6505cad"],
+ ".  The initial condition tell you where the solution ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"y", "(", "t", ")"}], TraditionalForm]],ExpressionUUID->
+  "cda1f3da-4a2c-4c37-83ec-c8a2fb7f0251"],
+ " is at ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["t", "0"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b77c964f-31e4-46b8-aa56-253c2e8ef8fd"],
+ "."
+}], "Item",
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.870879293479102*^9, 
+  3.870879334026267*^9}},ExpressionUUID->"e510d059-b6d5-415b-b764-\
+bb90fa2cc3ee"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+It is natural to think that an IVP should have exactly one solution. \
+\>", "Item",
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.870879293479102*^9, 
+  3.870879375792617*^9}},ExpressionUUID->"3dd9592c-b910-466a-9896-\
+a3dfb5221cf8"],
+
+Cell[TextData[{
+ "We need to think what it means for a function ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"y", "(", "t", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "7c64a169-f4bd-4a2d-a1d2-76685c9956d2"],
+ " to solve an IVP."
+}], "Subitem",
+ CellChangeTimes->{{3.870878945757465*^9, 3.870878964597055*^9}, {
+  3.870879293479102*^9, 
+  3.8708794178805766`*^9}},ExpressionUUID->"135774f2-ed8e-4ca8-bae0-\
+e330f72f34b9"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution", "Section",
+ CellChangeTimes->{{3.870878597118907*^9, 
+  3.870878623773615*^9}},ExpressionUUID->"c61da27b-f392-4beb-87c8-\
+c45b0e3adf1a"],
+
+Cell[TextData[{
+ "Informal Theorem\nA differentiable function ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", ":", 
+     RowBox[{"(", 
+      RowBox[{"a", ",", "b"}], ")"}]}], "\[Rule]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e5dacb22-4a1a-4059-ba07-7c0bb2eaf83c"],
+ "is a solution of the ODE ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], "=", 
+    RowBox[{"f", "(", 
+     RowBox[{"t", ",", 
+      RowBox[{"y", "(", "t", ")"}]}], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"c8c33ce8-cd93-4763-90b7-70a8efe0ad66"],
+ " with an initial condition ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "'"}], 
+     RowBox[{"(", 
+      SubscriptBox["t", "0"], ")"}]}], "=", 
+    SubscriptBox["y", "0"]}], TraditionalForm]],ExpressionUUID->
+  "3d32373f-2640-4b1d-94e7-c8f739d9cb7b"],
+ " has a unique solution on some interval around ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["t", "0"], TraditionalForm]],ExpressionUUID->
+  "0682a177-1ade-42df-a053-49b073455683"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", ":", 
+     RowBox[{"\[DoubleStruckCapitalR]", "\[Times]", 
+      SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}]}], "\[Rule]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "n"]}], TraditionalForm]],
+  ExpressionUUID->"4e35b616-0858-4668-a102-c4ec44481dcd"],
+ " is smooth."
+}], "Abstract",
+ CellChangeTimes->{{3.8708770816673837`*^9, 3.8708772057760105`*^9}, {
+  3.8708786415817585`*^9, 
+  3.8708787007122946`*^9}},ExpressionUUID->"c217336f-a4a7-4dc3-9b63-\
+501173b2f169"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->{"RulerBar", "EditBar"},
+WindowSize->{1256.5, 644.},
+WindowMargins->{{1639.5, Automatic}, {235, Automatic}},
+Magnification:>2. Inherited,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ce6721fa-2241-4409-ba13-ff7536370837"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 354, 6, 194, "Title",ExpressionUUID->"913952a7-d0ac-4226-ab6f-48622723466e"],
+Cell[937, 30, 231, 5, 69, "Text",ExpressionUUID->"c4b16720-8614-4386-995a-3d3da7597794"],
+Cell[1171, 37, 1335, 41, 258, "Abstract",ExpressionUUID->"94acf09b-9c9a-4d27-a1ef-fb9c42f7e635"],
+Cell[2509, 80, 460, 8, 159, "Text",ExpressionUUID->"ec4a6fe2-c3bc-4f6c-9601-e58f6cede46c"],
+Cell[CellGroupData[{
+Cell[2994, 92, 305, 7, 210, "Section",ExpressionUUID->"1a7feb8e-4855-494f-9f31-ae3e8d2ff0a1"],
+Cell[3302, 101, 862, 27, 69, "Text",ExpressionUUID->"34685f7c-5a4c-427f-81f7-9dcd894a5786"],
+Cell[4167, 130, 741, 21, 63, "Item",ExpressionUUID->"29f2f68b-571d-4725-93bd-5a9e14fe08f0",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[4933, 155, 253, 4, 63, "Item",ExpressionUUID->"5d3a6124-c543-4a65-a585-e5d3e52b0a86"],
+Cell[5189, 161, 248, 4, 52, "Subitem",ExpressionUUID->"167e2066-f4cb-43e2-b1ae-5a968ee5b7f4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5486, 171, 329, 8, 210, "Section",ExpressionUUID->"bba3b592-6fb6-43c9-bba9-3787639863a6"],
+Cell[5818, 181, 808, 23, 69, "Text",ExpressionUUID->"21c9d084-6916-41bd-80b3-09f32b523d0f"],
+Cell[CellGroupData[{
+Cell[6651, 208, 397, 8, 63, "Item",ExpressionUUID->"6c6711f5-28b0-41f2-883e-c5477846f8a1",
+ InitializationCell->True],
+Cell[7051, 218, 374, 6, 52, "Subitem",ExpressionUUID->"8155ecd8-3974-444f-b361-165ab96bf803",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7474, 230, 250, 7, 210, "Section",ExpressionUUID->"d71098f5-c950-4da2-9d39-1c7e2f9a5ff9"],
+Cell[7727, 239, 1196, 38, 71, "Text",ExpressionUUID->"0cf8ec3e-9e0b-419d-8852-886ea9cb5f94"],
+Cell[8926, 279, 778, 24, 104, "Item",ExpressionUUID->"e510d059-b6d5-415b-b764-bb90fa2cc3ee"],
+Cell[CellGroupData[{
+Cell[9729, 307, 268, 6, 63, "Item",ExpressionUUID->"3dd9592c-b910-466a-9896-a3dfb5221cf8"],
+Cell[10000, 315, 447, 12, 52, "Subitem",ExpressionUUID->"135774f2-ed8e-4ca8-bae0-e330f72f34b9"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10496, 333, 153, 3, 134, "Section",ExpressionUUID->"c61da27b-f392-4beb-87c8-c45b0e3adf1a"],
+Cell[10652, 338, 1632, 49, 258, "Abstract",ExpressionUUID->"c217336f-a4a7-4dc3-9b63-501173b2f169"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
