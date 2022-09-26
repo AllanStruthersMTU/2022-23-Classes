@@ -1,0 +1,135 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4265,        127]
+NotebookOptionsPosition[      3295,        103]
+NotebookOutlinePosition[      3813,        122]
+CellTagsIndexPosition[      3770,        119]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Gravity", "Title",
+ CellChangeTimes->{{3.8729325264395113`*^9, 3.872932550712231*^9}, {
+  3.872932602894071*^9, 3.872932623129631*^9}, {3.8732096644062934`*^9, 
+  3.873209665686298*^9}},ExpressionUUID->"f2873c14-0a19-431c-aa06-\
+7d9f88482c30"],
+
+Cell["\<\
+A bunch of the tools we are looking at were developed to think about \
+planetary motion\
+\>", "Text",
+ CellChangeTimes->{{3.8729326289448495`*^9, 3.8729328726998596`*^9}, {
+  3.8732098839809537`*^9, 
+  3.8732099174051294`*^9}},ExpressionUUID->"d30f9558-d44b-4671-8b6b-\
+6cc6248c9fcb"],
+
+Cell[TextData[{
+ "Newton\[CloseCurlyQuote]s Laws\n\nFor each body ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["F", "i"], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["m", "i"], " ", 
+      SubscriptBox["a", "i"]}], "=", 
+     RowBox[{
+      SubscriptBox["m", "i"], 
+      SubsuperscriptBox["p", "i", "''"]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "553c52d3-dec4-4706-bec7-a7bbed2ad3e3"],
+ "\nFor each planet ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["F", "i"], "=", 
+    RowBox[{"C", " ", 
+     SubscriptBox["m", "i"], 
+     RowBox[{
+      SubsuperscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}], "n"], 
+      RowBox[{
+       SubscriptBox["m", "j"], 
+       FractionBox[
+        RowBox[{
+         SubscriptBox["p", "i"], "-", 
+         SubscriptBox["p", "j"]}], 
+        RowBox[{"||", 
+         RowBox[{
+          SubscriptBox["p", "i"], "-", 
+          SubscriptBox["p", "j"]}], 
+         SuperscriptBox["||", "3"]}]]}]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "65727f01-d394-4410-a619-2115ac81eb7c"],
+ " "
+}], "Abstract",
+ CellChangeTimes->{{3.872860860033261*^9, 3.872860891583434*^9}, {
+  3.8729346951087856`*^9, 3.8729348575747433`*^9}, {3.8732096815182023`*^9, 
+  3.8732098566232624`*^9}},ExpressionUUID->"3cfc1c73-645f-41ea-88aa-\
+84cf85b7535d"],
+
+Cell["\<\
+We are going to build the equations and look at some orbits.  We need to \
+decide how we are going to store the positions of all the planets. We need to \
+decide if we are going to solve a first order system or a second order system \
+of half the size.   \
+\>", "Text",
+ CellChangeTimes->{{3.873210010325433*^9, 
+  3.8732101175786858`*^9}},ExpressionUUID->"e7eb62ae-4792-46f1-b947-\
+d9ecc6cf5bea"],
+
+Cell["Identical Suns: Figure Eight Orbit", "Section",
+ CellChangeTimes->{{3.8732101407491646`*^9, 
+  3.8732101655161066`*^9}},ExpressionUUID->"30dd1ca6-d911-474c-a59b-\
+966e28c878ad"],
+
+Cell["Identical Suns + Planet: Figure Eight Orbit", "Section",
+ CellChangeTimes->{{3.8732101407491646`*^9, 
+  3.873210195251977*^9}},ExpressionUUID->"e89f0692-cbb2-46bf-ae19-\
+6ccb4540a970"]
+}, Open  ]]
+},
+WindowToolbars->{"RulerBar", "EditBar"},
+WindowSize->{1475., 995.5},
+WindowMargins->{{1258.5, Automatic}, {-59, Automatic}},
+TaggingRules->Association["TryRealOnly" -> False],
+Magnification->1.5,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a18529c4-3d5d-4e16-b55e-4501b54e2a1d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 249, 4, 146, "Title",ExpressionUUID->"f2873c14-0a19-431c-aa06-7d9f88482c30"],
+Cell[832, 28, 294, 7, 52, "Text",ExpressionUUID->"d30f9558-d44b-4671-8b6b-6cc6248c9fcb"],
+Cell[1129, 37, 1361, 43, 210, "Abstract",ExpressionUUID->"3cfc1c73-645f-41ea-88aa-84cf85b7535d"],
+Cell[2493, 82, 407, 8, 87, "Text",ExpressionUUID->"e7eb62ae-4792-46f1-b947-d9ecc6cf5bea"],
+Cell[2903, 92, 183, 3, 100, "Section",ExpressionUUID->"30dd1ca6-d911-474c-a59b-966e28c878ad"],
+Cell[3089, 97, 190, 3, 77, "Section",ExpressionUUID->"e89f0692-cbb2-46bf-ae19-6ccb4540a970"]
+}, Open  ]]
+}
+]
+*)
+
