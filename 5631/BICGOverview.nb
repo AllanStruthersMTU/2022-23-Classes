@@ -1,0 +1,496 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17511,        488]
+NotebookOptionsPosition[     15825,        452]
+NotebookOutlinePosition[     16287,        470]
+CellTagsIndexPosition[     16244,        467]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["BICG Overview", "Title",
+ CellChangeTimes->{{3.868969974574915*^9, 3.868970011142788*^9}, {
+  3.8709496289195943`*^9, 3.870949644903387*^9}, {3.871556299015231*^9, 
+  3.871556300095087*^9}, {3.8757117450549607`*^9, 3.87571176980505*^9}, {
+  3.8757814695216403`*^9, 3.875781479954878*^9}, {3.875791017281259*^9, 
+  3.875791022677065*^9}},ExpressionUUID->"913952a7-d0ac-4226-ab6f-\
+48622723466e"],
+
+Cell[CellGroupData[{
+
+Cell["BICG Algorithm Family", "Subsection",
+ CellChangeTimes->{{3.8757811193964624`*^9, 3.875781122492303*^9}, {
+  3.8757829394853983`*^9, 
+  3.8757829703511477`*^9}},ExpressionUUID->"3c770a7c-3bdc-4c0c-9073-\
+b645a722b90d"],
+
+Cell["\<\
+For a symmetric matrix we can use the Lanczos algorithm rather than the \
+Arnoldi algorithm.  \
+\>", "Text",
+ CellChangeTimes->{{3.8715563034649286`*^9, 3.871556419189464*^9}, {
+   3.875711774149787*^9, 3.875711839860138*^9}, {3.87571187848425*^9, 
+   3.8757119381589317`*^9}, {3.875711977483982*^9, 3.875711998932414*^9}, {
+   3.87571215035605*^9, 3.8757133473343477`*^9}, {3.8757155743380547`*^9, 
+   3.875715612810854*^9}, {3.875715689249301*^9, 3.875715689521443*^9}, {
+   3.875717925891738*^9, 3.8757183641982207`*^9}, {3.8757183969249845`*^9, 
+   3.87571895253306*^9}, {3.875777937901823*^9, 3.8757784599804015`*^9}, 
+   3.875781131734119*^9, {3.875782955041628*^9, 3.8757831635669727`*^9}, 
+   3.875791103413299*^9},ExpressionUUID->"cd414c39-1944-4b34-ae9a-\
+d5ab4d1661a3"],
+
+Cell[TextData[{
+ "Step k in the Arnoldi process orthogonalizes against k-1 earlier \
+directions: the result is that the Arnoldi process to step k is an ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"O", "(", 
+    SuperscriptBox["k", "2"], ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "44537227-ee00-4b44-af33-b4db39c0ef9c"],
+ " algorithm.  "
+}], "Item",
+ CellChangeTimes->{{3.8715563034649286`*^9, 3.871556419189464*^9}, {
+   3.875711774149787*^9, 3.875711839860138*^9}, {3.87571187848425*^9, 
+   3.8757119381589317`*^9}, {3.875711977483982*^9, 3.875711998932414*^9}, {
+   3.87571215035605*^9, 3.8757133473343477`*^9}, {3.8757155743380547`*^9, 
+   3.875715612810854*^9}, {3.875715689249301*^9, 3.875715689521443*^9}, {
+   3.875717925891738*^9, 3.8757183641982207`*^9}, {3.8757183969249845`*^9, 
+   3.87571895253306*^9}, {3.875777937901823*^9, 3.8757784599804015`*^9}, 
+   3.875781131734119*^9, {3.875782955041628*^9, 
+   3.875783262984014*^9}},ExpressionUUID->"fd8fab33-36ea-4b77-bffa-\
+cf50d488c713"],
+
+Cell[TextData[{
+ "In contrast, the Lanczos process only ever orthogonalizes against one \
+earlier direction: the result is that the Lanczos process to step k is an ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"O", "(", "k", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "00980f6b-1aa4-4d89-8c4e-0318429d9352"],
+ " algorithm."
+}], "Item",
+ CellChangeTimes->{{3.8715563034649286`*^9, 3.871556419189464*^9}, {
+   3.875711774149787*^9, 3.875711839860138*^9}, {3.87571187848425*^9, 
+   3.8757119381589317`*^9}, {3.875711977483982*^9, 3.875711998932414*^9}, {
+   3.87571215035605*^9, 3.8757133473343477`*^9}, {3.8757155743380547`*^9, 
+   3.875715612810854*^9}, {3.875715689249301*^9, 3.875715689521443*^9}, {
+   3.875717925891738*^9, 3.8757183641982207`*^9}, {3.8757183969249845`*^9, 
+   3.87571895253306*^9}, {3.875777937901823*^9, 3.8757784599804015`*^9}, 
+   3.875781131734119*^9, {3.875782955041628*^9, 
+   3.8757832674704432`*^9}},ExpressionUUID->"0e5847ab-f817-4c34-9f87-\
+79a42604e0d6"],
+
+Cell[TextData[{
+ "The eigenvalues of the symmetric matrix\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"A", "\[Transpose]"}]},
+      {"A", "0"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "c3fa6a51-74b1-47a3-9842-45736e9832e9"],
+ "\nare ",
+ Cell[BoxData[
+  FormBox["\[PlusMinus]", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "03c12676-4981-47b8-9300-49bf2b4e5777"],
+ " the singular values of A. "
+}], "Text",
+ CellChangeTimes->{{3.875791044890838*^9, 
+  3.8757910962571354`*^9}},ExpressionUUID->"112504b9-6305-4956-a245-\
+a71d99f4fbf3"],
+
+Cell[TextData[{
+ "The literature describes the Lanczos as a \[OpenCurlyDoubleQuote]constant \
+work per iteration\[CloseCurlyDoubleQuote] algorithm.  BICG and its cousins \
+are a trick to solve ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "590219a5-a29c-4e62-be45-c8eb77b8f988"],
+ " by solving the double sized structured system \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", "\[NoBreak]", GridBox[{
+        {"0", 
+         RowBox[{"A", "\[Transpose]"}]},
+        {"A", "0"}
+       }], "\[NoBreak]", ")"}], ".", 
+     RowBox[{"(", "\[NoBreak]", GridBox[{
+        {"x"},
+        {"y"}
+       }], "\[NoBreak]", ")"}]}], "=", 
+    RowBox[{
+     RowBox[{"(", "\[NoBreak]", GridBox[{
+        {
+         RowBox[{
+          RowBox[{"A", "\[Transpose]"}], ".", "y"}]},
+        {
+         RowBox[{"A", ".", "x"}]}
+       }], "\[NoBreak]", ")"}], "=", 
+     RowBox[{"(", "\[NoBreak]", GridBox[{
+        {"?"},
+        {"b"}
+       }], "\[NoBreak]", ")"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "072ef37d-0a3e-496e-a06a-a192c620dbe3"],
+ "\nSince the eigenvalues of ",
+ Cell[BoxData[
+  FormBox["H", TraditionalForm]],ExpressionUUID->
+  "70a843bf-8ca5-4126-96fe-b103a3f33ad1"],
+ " are ",
+ Cell[BoxData[
+  FormBox["\[PlusMinus]", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "96a69525-9f13-4a5a-a3ea-39f5351ca897"],
+ " the singular values of A much of the analysis for symmetric matrices can \
+be interpreted.  The bad news is that the negative eigenvalues of H means \
+that CG does not apply.  In fact, the positive and negative eigenvalues pairs \
+need to be treated carefully.  "
+}], "Text",
+ CellChangeTimes->{{3.875783272182436*^9, 3.8757833615238285`*^9}, {
+  3.875783688538502*^9, 
+  3.875784107077101*^9}},ExpressionUUID->"ca1eadf9-b5f7-44d1-ae85-\
+92c871bc3faf"],
+
+Cell[TextData[{
+ "You can choose the top half of the RHS anyway you want.  Other tricks are \
+possible to embed the problem you care about ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "543e6a2b-caf3-4ede-9aa4-aa914bae3614"],
+ " into a larger problem that has some desirable structure. Sometimes these \
+tricks have an interpretation in the problem context. We are going to view \
+these entirely as algebraic operations.   "
+}], "Text",
+ CellChangeTimes->{{3.875784121641227*^9, 3.875784152326816*^9}, {
+  3.8757842967246246`*^9, 3.8757843186810446`*^9}, {3.875784399667922*^9, 
+  3.87578452709563*^9}},ExpressionUUID->"48c7d83a-6209-4cd0-818a-\
+ccf54889d4f2"],
+
+Cell[TextData[{
+ "Normally these algorithms are presented as two sets of operations on two \
+distinct vector sequences!  At each step one or more vectors associated with \
+the solver sequence ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "034674fd-dd55-4216-a5a6-b66759e6d717"],
+ " are updated using multiplication by A while one or more vectors associated \
+with the helper sequence ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["y", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "24cf34dc-c788-4518-87d0-b68cbc8c262b"],
+ " are updated using multiplication by ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["A", "\[Transpose]"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f01c169f-bbcc-4bbe-afef-6f27eb919fbb"],
+ ". The sequences maintain some cross orthogonality which explains the \
+biconjugate name.  "
+}], "Text",
+ CellChangeTimes->{{3.875784536228923*^9, 3.875784576607277*^9}, {
+  3.875784695503007*^9, 3.875784888380145*^9}, {3.8757854228965893`*^9, 
+  3.875785450992935*^9}},ExpressionUUID->"f6cd8296-0d29-429a-b822-\
+90d4eaa51cfe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Big Orthogonality", "Subsection",
+ CellChangeTimes->{{3.8757811193964624`*^9, 3.875781122492303*^9}, {
+  3.8757829394853983`*^9, 3.8757829703511477`*^9}, {3.875791146547756*^9, 
+  3.8757911522569704`*^9}, {3.87579178403473*^9, 
+  3.875791784835449*^9}},ExpressionUUID->"a3ad5105-daa7-4ec7-a40b-\
+0c013c481ca8"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"n", "\[Times]", "n"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "18096bdb-81c8-42e6-bd09-64cc2120974f"],
+ " and we can run Lanczos on the symmetric ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "n"}], ")"}], "\[Times]", 
+    RowBox[{"(", 
+     RowBox[{"2", "n"}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b93b4bae-c9e0-42ac-a4c9-1c570a2757d7"],
+ " matrix \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"A", "\[Transpose]"}]},
+      {"A", "0"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1c4fa414-42a3-4a31-a04e-5b4d5932cc02"],
+ "\nto generate a sequence of big orthogonal vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["q", "j"], "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"2", "n"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "467b04cf-7c50-4308-adef-bca706376d92"],
+ ".  It is natural to write \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["q", "j"], "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["q", "^"], "j"], "|", " ", 
+      SubscriptBox[
+       OverscriptBox["q", "~"], "j"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "cb4ef511-d159-42a1-89a8-888f32be1c88"],
+ "\nNote that the automatic orthogonality from Lanczos is \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["q", "^"], "j"], ".", 
+      SubscriptBox[
+       OverscriptBox["q", "^"], "j"]}], "+", " ", 
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["q", "~"], "j"], ".", 
+      SubscriptBox[
+       OverscriptBox["q", "~"], "j"]}]}], "=", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a9e47e0a-ec74-4c9b-8cb6-46f9ccb2ecfc"],
+ "\nfor all j  and for all ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c7976f7e-4b51-4c58-a711-646cce83d934"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["q", "^"], "i"], ".", 
+      SubscriptBox[
+       OverscriptBox["q", "^"], "j"]}], "+", " ", 
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["q", "~"], "i"], ".", 
+      SubscriptBox[
+       OverscriptBox["q", "~"], "j"]}]}], "=", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1272b53c-78da-433c-92eb-0ec03c9aa78a"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.875791157956425*^9, 
+  3.875791767531289*^9}},ExpressionUUID->"05f3ece1-25ad-4586-b2cc-\
+6563302e6ecd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lanczos Required Matrix Vector Multiplications", "Subsection",
+ CellChangeTimes->{{3.8757811193964624`*^9, 3.875781122492303*^9}, {
+  3.8757829394853983`*^9, 3.8757829703511477`*^9}, {3.875791146547756*^9, 
+  3.8757911522569704`*^9}, {3.87579178403473*^9, 
+  3.875791828232353*^9}},ExpressionUUID->"7dbc1866-1169-4d25-8792-\
+8b7391943042"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"n", "\[Times]", "n"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1bfdfb49-ac59-4774-9411-fbe3d443be52"],
+ " and we run Lanczos on the symmetric ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "n"}], ")"}], "\[Times]", 
+    RowBox[{"(", 
+     RowBox[{"2", "n"}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "9a4df965-c216-4059-98f5-1f7159af1900"],
+ " matrix \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"A", "\[Transpose]"}]},
+      {"A", "0"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ed2f2a75-bb8c-4115-a8c7-870a093969a4"],
+ "\nto generate a sequence of big orthogonal vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["q", "j"], "=", 
+    RowBox[{
+     RowBox[{"[", 
+      RowBox[{
+       SubscriptBox[
+        OverscriptBox["q", "^"], "j"], "|", " ", 
+       SubscriptBox[
+        OverscriptBox["q", "~"], "j"]}], "]"}], "\[Element]", 
+     SuperscriptBox["\[DoubleStruckCapitalR]", 
+      RowBox[{"2", "n"}]]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2b4cbaac-7e92-4f32-831b-18f3abf83b4a"],
+ " then the only matrix vector products required at each step are\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"0", 
+        RowBox[{"A", "\[Transpose]"}]},
+       {"A", "0"}
+      }], "\[NoBreak]", ")"}], ".", 
+    FormBox[
+     RowBox[{
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {
+          SubscriptBox[
+           OverscriptBox["q", "^"], "j"]},
+         {
+          SubscriptBox[
+           OverscriptBox["q", "~"], "j"]}
+        }], "\[NoBreak]", ")"}], "=", 
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {
+          RowBox[{
+           RowBox[{"A", "\[Transpose]"}], ".", 
+           SubscriptBox[
+            OverscriptBox["q", "~"], "j"]}]},
+         {
+          RowBox[{"A", ".", 
+           SubscriptBox[
+            OverscriptBox["q", "^"], "j"]}]}
+        }], "\[NoBreak]", ")"}]}],
+     TraditionalForm]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5ce23238-0ecb-467d-a7fd-587019f9bdb0"],
+ "\nAt each step we need one multiplication by ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e713e023-0fbc-450a-922e-734e5607c4f9"],
+ " and one multiplication by ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "\[Transpose]"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "3515bad1-4380-4cd5-9337-5888b8e18443"],
+ ".   In practice, if we are running an algorithm of this sort it is commonly \
+worth while to create a second matrix ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"At", "=", 
+    RowBox[{"A", "\[Transpose]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "65b7d37f-ab4e-485b-b495-732394f68b23"],
+ " once and use it to compute all products of the form ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", "\[Transpose]"}], ".", "z"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b363a0be-4781-41bd-b9ac-b5bd6fe3f536"],
+ " \t"
+}], "Text",
+ CellChangeTimes->{{3.875791157956425*^9, 3.875791767531289*^9}, {
+  3.875791837306657*^9, 
+  3.87579217122744*^9}},ExpressionUUID->"f296e57a-ecf9-403f-b062-\
+fd71f150a3fa"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1141, 580},
+WindowMargins->{{1370.5, Automatic}, {140.5, Automatic}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cba77544-c8c4-41b4-89be-544b4c879f5b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 400, 6, 146, "Title",ExpressionUUID->"913952a7-d0ac-4226-ab6f-48622723466e"],
+Cell[CellGroupData[{
+Cell[1005, 32, 224, 4, 81, "Subsection",ExpressionUUID->"3c770a7c-3bdc-4c0c-9073-b645a722b90d"],
+Cell[1232, 38, 790, 13, 52, "Text",ExpressionUUID->"cd414c39-1944-4b34-ae9a-d5ab4d1661a3"],
+Cell[2025, 53, 1025, 20, 80, "Item",ExpressionUUID->"fd8fab33-36ea-4b77-bffa-cf50d488c713"],
+Cell[3053, 75, 1011, 19, 79, "Item",ExpressionUUID->"0e5847ab-f817-4c34-9f87-79a42604e0d6"],
+Cell[4067, 96, 638, 19, 144, "Text",ExpressionUUID->"112504b9-6305-4956-a245-a71d99f4fbf3"],
+Cell[4708, 117, 1947, 55, 249, "Text",ExpressionUUID->"ca1eadf9-b5f7-44d1-ae85-92c871bc3faf"],
+Cell[6658, 174, 764, 16, 156, "Text",ExpressionUUID->"48c7d83a-6209-4cd0-818a-ccf54889d4f2"],
+Cell[7425, 192, 1172, 28, 156, "Text",ExpressionUUID->"f6cd8296-0d29-429a-b822-90d4eaa51cfe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8634, 225, 316, 5, 81, "Subsection",ExpressionUUID->"a3ad5105-daa7-4ec7-a40b-0c013c481ca8"],
+Cell[8953, 232, 2924, 95, 330, "Text",ExpressionUUID->"05f3ece1-25ad-4586-b2cc-6563302e6ecd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11914, 332, 345, 5, 81, "Subsection",ExpressionUUID->"7dbc1866-1169-4d25-8792-8b7391943042"],
+Cell[12262, 339, 3535, 109, 359, "Text",ExpressionUUID->"f296e57a-ecf9-403f-b062-fd71f150a3fa"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
