@@ -1,0 +1,274 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9220,        266]
+NotebookOptionsPosition[      7993,        236]
+NotebookOutlinePosition[      8511,        255]
+CellTagsIndexPosition[      8468,        252]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Period Doubling", "Title",
+ CellChangeTimes->{{3.8762157882877216`*^9, 3.8762157927291117`*^9}, {
+  3.8767510921836815`*^9, 3.8767511159612827`*^9}, {3.877172889316867*^9, 
+  3.8771729161424117`*^9}, {3.8774449134137077`*^9, 3.877444915909545*^9}, {
+  3.877445155153504*^9, 
+  3.8774451589498262`*^9}},ExpressionUUID->"cfe02285-7314-4cf7-afc8-\
+b2cfe098c8c5"],
+
+Cell[TextData[{
+ "We have seen how periodic orbits double and become chaotic.  We have seen \
+how this behavior is universal. The key to understanding this was to look at \
+and understand 1D maps ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"g", ":", 
+     RowBox[{"[", 
+      RowBox[{"0", ",", "1"}], "]"}]}], "\[Rule]", 
+    RowBox[{"[", 
+     RowBox[{"0", ",", "1"}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a425fa7b-7429-4709-83ce-7f57f5bc1594"],
+ ".  We saw that all smooth single humped maps g had the same universal \
+doubling behavior.  We ported this to the \[OpenCurlyDoubleQuote]peak\
+\[CloseCurlyDoubleQuote] return map for the Rosseler system and found a whole \
+bunch of stable periodic orbits.  We found enough stable periodic orbits that \
+it looked as though they filled up the whole of the Rosseler attractor! This \
+is the generic way that an ODE goes chaotic as you increase the \
+non-linearity. "
+}], "Text",
+ CellChangeTimes->{{3.877172922805202*^9, 3.877173107320244*^9}, {
+  3.8771731403033266`*^9, 3.8771731788008757`*^9}, {3.8771736868770976`*^9, 
+  3.8771737420284348`*^9}, {3.8774449204847846`*^9, 3.8774451390888596`*^9}, {
+  3.877445392555077*^9, 
+  3.8774455945827103`*^9}},ExpressionUUID->"da29c358-e715-41aa-a2a7-\
+26829ccf3305"],
+
+Cell[TextData[{
+ "In words, it is common for a stable periodic orbit of a parameterized ODE ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"y", "'"}], "=", 
+    RowBox[{
+     SubscriptBox["f", "\[Mu]"], "(", "y", ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fcce224f-cf0b-4531-9b72-9c379a0121ee"],
+ " with period ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["T", "u"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "7be20863-9b66-4cbb-b4de-f5e082c480a4"],
+ " to transform to a stable periodic orbit of period ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", 
+    SubscriptBox["T", "\[Mu]"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e50b74cc-e0a3-46e7-9f27-a051629731f0"],
+ " at a given value of the parameter ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[Mu]", "*"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "984f396e-22b4-462d-a747-b579ceb61356"],
+ ".  It is common for this to happen repeatedly and this \
+\[OpenCurlyDoubleQuote]frequency-doubling cascade\[CloseCurlyDoubleQuote] \
+route to chaos is generic. "
+}], "Text",
+ CellChangeTimes->{{3.8774451633123617`*^9, 3.8774453823083315`*^9}, {
+  3.8774455985603905`*^9, 
+  3.877445642083725*^9}},ExpressionUUID->"5b6f5429-da5b-4c24-8311-\
+e51b7eedee3e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Bifurcations", "Title",
+ CellChangeTimes->{{3.8762157882877216`*^9, 3.8762157927291117`*^9}, {
+  3.8767510921836815`*^9, 3.8767511159612827`*^9}, {3.877172889316867*^9, 
+  3.8771729161424117`*^9}, {3.8774449134137077`*^9, 
+  3.877444915909545*^9}},ExpressionUUID->"b49faba6-cb6c-4f60-94de-\
+135dfc1413e1"],
+
+Cell["\<\
+Interesting things can happen long before ODEs go chaotic.  The key is to \
+think about how equilibrium points can change with the parameters. Lets look \
+at the equilibrium points for the Rosseler system. \
+\>", "Text",
+ CellChangeTimes->{{3.877172922805202*^9, 3.877173107320244*^9}, {
+  3.8771731403033266`*^9, 3.8771731788008757`*^9}, {3.8771736868770976`*^9, 
+  3.8771737420284348`*^9}, {3.8774449204847846`*^9, 3.8774450065415597`*^9}, {
+  3.877445725721921*^9, 
+  3.877445764603224*^9}},ExpressionUUID->"b0f661c4-09ee-42b2-b2ce-\
+dba9ff0f014d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"StdParams", "=", 
+   RowBox[{"{", 
+    RowBox[{"0.2", ",", "0.2", ",", "5.7"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "b_", ",", "c_"}], "}"}], "]"}], "[", 
+   RowBox[{"{", 
+    RowBox[{"x_", ",", "y_", ",", "z_"}], "}"}], "]"}], ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "y"}], "-", "z"}], ",", 
+    RowBox[{"x", " ", "+", " ", 
+     RowBox[{"a", " ", "y"}]}], ",", " ", 
+    RowBox[{"b", "+", 
+     RowBox[{"z", 
+      RowBox[{"(", 
+       RowBox[{"x", "-", "c"}], ")"}]}]}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b", ",", "c"}], "}"}], "]"}], "[", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y", ",", "z"}], "}"}], "]"}], "==", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8774458119366417`*^9, 3.877445926186922*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"2bca0f6b-61f0-4b4c-9746-739e2e24ee31"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"c", "-", 
+         SqrtBox[
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+           SuperscriptBox["c", "2"]}]]}], ")"}]}]}], ",", 
+     RowBox[{"y", "\[Rule]", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"-", "c"}], "+", 
+        SqrtBox[
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+          SuperscriptBox["c", "2"]}]]}], 
+       RowBox[{"2", " ", "a"}]]}], ",", 
+     RowBox[{"z", "\[Rule]", 
+      FractionBox[
+       RowBox[{"c", "-", 
+        SqrtBox[
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+          SuperscriptBox["c", "2"]}]]}], 
+       RowBox[{"2", " ", "a"}]]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"c", "+", 
+         SqrtBox[
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+           SuperscriptBox["c", "2"]}]]}], ")"}]}]}], ",", 
+     RowBox[{"y", "\[Rule]", 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"c", "+", 
+         SqrtBox[
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+           SuperscriptBox["c", "2"]}]]}], 
+        RowBox[{"2", " ", "a"}]]}]}], ",", 
+     RowBox[{"z", "\[Rule]", 
+      FractionBox[
+       RowBox[{"c", "+", 
+        SqrtBox[
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "4"}], " ", "a", " ", "b"}], "+", 
+          SuperscriptBox["c", "2"]}]]}], 
+       RowBox[{"2", " ", "a"}]]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.877445907766368*^9, 3.8774459267442427`*^9}},
+ CellLabel->"Out[6]=",ExpressionUUID->"ca499a63-4f6f-4ef2-b93e-0a58df821fc7"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.877445947502181*^9, 
+  3.877445959823149*^9}},ExpressionUUID->"b517caa8-89b4-4420-a337-\
+50706af80305"]
+}, Open  ]]
+},
+WindowToolbars->{"RulerBar", "EditBar"},
+WindowSize->{1141, 605},
+WindowMargins->{{1827.5, Automatic}, {444.5, Automatic}},
+TaggingRules->Association["TryRealOnly" -> False],
+Magnification->1.25,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6a25c8e5-c01c-4026-bc9c-83c445505110"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 365, 6, 122, "Title",ExpressionUUID->"cfe02285-7314-4cf7-afc8-b2cfe098c8c5"],
+Cell[948, 30, 1308, 27, 158, "Text",ExpressionUUID->"da29c358-e715-41aa-a2a7-26829ccf3305"],
+Cell[2259, 59, 1323, 36, 103, "Text",ExpressionUUID->"5b6f5429-da5b-4c24-8311-e51b7eedee3e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3619, 100, 311, 5, 122, "Title",ExpressionUUID->"b49faba6-cb6c-4f60-94de-135dfc1413e1"],
+Cell[3933, 107, 561, 10, 72, "Text",ExpressionUUID->"b0f661c4-09ee-42b2-b2ce-dba9ff0f014d"],
+Cell[CellGroupData[{
+Cell[4519, 121, 1263, 38, 83, "Input",ExpressionUUID->"2bca0f6b-61f0-4b4c-9746-739e2e24ee31"],
+Cell[5785, 161, 2025, 66, 115, "Output",ExpressionUUID->"ca499a63-4f6f-4ef2-b93e-0a58df821fc7"]
+}, Open  ]],
+Cell[7825, 230, 152, 3, 35, "Input",ExpressionUUID->"b517caa8-89b4-4420-a337-50706af80305"]
+}, Open  ]]
+}
+]
+*)
+
