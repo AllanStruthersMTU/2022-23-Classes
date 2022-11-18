@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      6751,        201]
-NotebookOptionsPosition[      6022,        179]
-NotebookOutlinePosition[      6452,        196]
-CellTagsIndexPosition[      6409,        193]
+NotebookDataLength[      6616,        196]
+NotebookOptionsPosition[      5868,        173]
+NotebookOutlinePosition[      6315,        191]
+CellTagsIndexPosition[      6272,        188]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -28,9 +28,8 @@ Cell[TextData[Cell[BoxData[
      RowBox[{"Rank", "(", "B", ")"}], "\[LessEqual]", "r"}]], "||", 
    RowBox[{
     RowBox[{"A", ".", "B"}], "-", "I"}], 
-   SubscriptBox["||", "F"]}], TraditionalForm]],
- FormatType->
-  TraditionalForm,ExpressionUUID->"ae5e7ca3-908d-4f24-8d59-09e685751fda"]], \
+   SubscriptBox["||", "F"]}], 
+  TraditionalForm]],ExpressionUUID->"ae5e7ca3-908d-4f24-8d59-09e685751fda"]], \
 "Title",
  CellChangeTimes->{{3.877783238591627*^9, 3.877783273931658*^9}, {
   3.8777837142497764`*^9, 3.8777837350331855`*^9}, {3.877783827518224*^9, 
@@ -44,8 +43,7 @@ Cell[TextData[{
   FormBox[
    RowBox[{"A", "=", 
     RowBox[{"U", ".", "\[CapitalSigma]", ".", 
-     RowBox[{"V", "\[Transpose]"}]}]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     RowBox[{"V", "\[Transpose]"}]}]}], TraditionalForm]],ExpressionUUID->
   "48917cd4-62a8-4a34-9614-7ed55f6b5565"],
  " then we can define ",
  Cell[BoxData[
@@ -53,8 +51,7 @@ Cell[TextData[{
    RowBox[{"B", "=", 
     RowBox[{"V", ".", 
      OverscriptBox["B", "^"], ".", 
-     RowBox[{"U", "\[Transpose]"}]}]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     RowBox[{"U", "\[Transpose]"}]}]}], TraditionalForm]],ExpressionUUID->
   "09f30848-1472-413c-b8c1-515921cea978"],
  " and substitute to get\n\t",
  Cell[BoxData[
@@ -100,10 +97,12 @@ Cell[TextData[{
           SuperscriptBox[
            RowBox[{"(", 
             RowBox[{
-             SubscriptBox["\[Sigma]", 
-              RowBox[{"i", " "}]], 
-             SubscriptBox[
-              OverscriptBox["B", "^"], "ii"]}], ")"}], "2"]}], "+", " ", 
+             RowBox[{
+              SubscriptBox["\[Sigma]", 
+               RowBox[{"i", " "}]], 
+              SubscriptBox[
+               OverscriptBox["B", "^"], "ii"]}], "-", "1"}], ")"}], "2"]}], 
+         "+", " ", 
          RowBox[{
           SubsuperscriptBox["\[Sum]", 
            RowBox[{"i", "=", "1"}], "n"], 
@@ -112,9 +111,7 @@ Cell[TextData[{
             RowBox[{"j", "\[NotEqual]", "i"}]], 
            SubsuperscriptBox[
             OverscriptBox["B", "^"], "ij", "2"]}]}]}]}]}]}]}]}], 
-   TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
-  "ccc69fbe-57d7-4ea2-9e25-74fecdc1a4fa"],
+   TraditionalForm]],ExpressionUUID->"ccc69fbe-57d7-4ea2-9e25-74fecdc1a4fa"],
  "\nThe unconstrained minimum is clearly the diagonal matrix with entries ",
  Cell[BoxData[
   FormBox[
@@ -122,8 +119,7 @@ Cell[TextData[{
     SubscriptBox[
      OverscriptBox["B", "^"], "ii"], "=", 
     RowBox[{"1", "/", 
-     SubscriptBox["\[Sigma]", "i"]}]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     SubscriptBox["\[Sigma]", "i"]}]}], TraditionalForm]],ExpressionUUID->
   "038b86ce-4e8d-4f0e-9467-8bdab9e012f3"],
  ".  The first question is what is the constrained minimizer? The second \
 question is why would we want the constrained minimizer for a \
@@ -131,7 +127,8 @@ preconditioner?"
 }], "Text",
  CellChangeTimes->{{3.8777839088361607`*^9, 3.877784363491804*^9}, {
   3.877784430911214*^9, 3.8777845401154556`*^9}, {3.8777850441102805`*^9, 
-  3.8777850482570324`*^9}},ExpressionUUID->"5a6aa8ff-4171-4c84-8953-\
+  3.8777850482570324`*^9}, {3.877789443154318*^9, 
+  3.87778944371931*^9}},ExpressionUUID->"5a6aa8ff-4171-4c84-8953-\
 8404c87d1731"]
 }, Open  ]],
 
@@ -151,21 +148,18 @@ Cell[TextData[{
   FormBox[
    RowBox[{"B", "\[TildeTilde]", 
     SuperscriptBox["A", 
-     RowBox[{"-", "1"}]]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     RowBox[{"-", "1"}]]}], TraditionalForm]],ExpressionUUID->
   "4bcef53d-8bca-47c3-a207-71c35101b5f0"],
  " that can be efficiently computed, stored, and updated that lets us avoid \
 orthogonalizing against all the prior residuals. We know it has to use \
 multiplication by ",
  Cell[BoxData[
-  FormBox["A", TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+  FormBox["A", TraditionalForm]],ExpressionUUID->
   "fbebf951-e475-4115-969d-37b3918976ce"],
  " and ",
  Cell[BoxData[
   FormBox[
-   RowBox[{"A", "\[Transpose]"}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   RowBox[{"A", "\[Transpose]"}], TraditionalForm]],ExpressionUUID->
   "c6b3c495-d789-4efc-a5f5-d1c0973c6a06"],
  ". We would like it to be based on some optimization principle. We would \
 like it to fit nicely into the BiCG framework.  We would like to compare it \
@@ -178,8 +172,9 @@ e515c53a6e99"]
 }, Open  ]]
 },
 WindowToolbars->"EditBar",
-WindowSize->{1141., 769.5},
-WindowMargins->{{1425, Automatic}, {Automatic, 24}},
+WindowSize->{1141.2, 574.8},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.5,
 FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"4177d2af-8f24-4b6b-97da-d93f22bf99b4"
@@ -196,12 +191,12 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 639, 16, 101, "Title",ExpressionUUID->"f6c6af40-04c1-4711-893b-c17037e6143e"],
-Cell[1222, 40, 3226, 94, 113, "Text",ExpressionUUID->"5a6aa8ff-4171-4c84-8953-8404c87d1731"]
+Cell[580, 22, 609, 15, 152, "Title",ExpressionUUID->"f6c6af40-04c1-4711-893b-c17037e6143e"],
+Cell[1192, 39, 3195, 92, 239, "Text",ExpressionUUID->"5a6aa8ff-4171-4c84-8953-8404c87d1731"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4485, 139, 358, 6, 98, "Title",ExpressionUUID->"bd8c4f80-1fe4-4b43-9567-1c83282c67d3"],
-Cell[4846, 147, 1160, 29, 81, "Text",ExpressionUUID->"6cf03187-3927-4245-b1ac-e515c53a6e99"]
+Cell[4424, 136, 358, 6, 146, "Title",ExpressionUUID->"bd8c4f80-1fe4-4b43-9567-1c83282c67d3"],
+Cell[4785, 144, 1067, 26, 190, "Text",ExpressionUUID->"6cf03187-3927-4245-b1ac-e515c53a6e99"]
 }, Open  ]]
 }
 ]
