@@ -10,78 +10,409 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4453,        142]
-NotebookOptionsPosition[      3485,        116]
-NotebookOutlinePosition[      3942,        133]
-CellTagsIndexPosition[      3899,        130]
+NotebookDataLength[     28293,        839]
+NotebookOptionsPosition[     26241,        801]
+NotebookOutlinePosition[     26726,        819]
+CellTagsIndexPosition[     26683,        816]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Conjugate Gradients", "Title",
- CellChangeTimes->{{3.879521225329365*^9, 
-  3.87952123619302*^9}},ExpressionUUID->"d2347fc2-67e6-4907-b249-\
+Cell["Conjugate Gradients and Related Algorithms", "Title",
+ CellChangeTimes->{{3.879521225329365*^9, 3.87952123619302*^9}, {
+  3.8795816148347473`*^9, 
+  3.8795816232310905`*^9}},ExpressionUUID->"d2347fc2-67e6-4907-b249-\
 ebe62edc85b0"],
-
-Cell["Conjugate gradients several different ways", "Text",
- CellChangeTimes->{{3.879521271817995*^9, 
-  3.8795212873450336`*^9}},ExpressionUUID->"78659969-bcb9-4a74-8bd1-\
-2e45439d10a2"],
-
-Cell[CellGroupData[{
-
-Cell["Conjugate", "Section",
- CellChangeTimes->{{3.8795213014688363`*^9, 
-  3.8795213095143857`*^9}},ExpressionUUID->"d06c7491-85a7-4e27-8966-\
-5140bc1bc1d6"],
 
 Cell[TextData[{
  "An indexed set of vectors ",
  Cell[BoxData[
   FormBox[
-   SubscriptBox["p", "i"], TraditionalForm]],
+   SubscriptBox["p", "i"], TraditionalForm]],ExpressionUUID->
+  "399e56a1-6e68-4665-8507-d545447a7518"],
+ " is orthogonal if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["p", "i"], ".", 
+     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],
   FormatType->TraditionalForm,ExpressionUUID->
-  "d7fa55e3-335f-4180-811f-d689a5c889f0"],
+  "59e89c76-96cf-4756-82e9-261dbe452e9f"],
+ " when ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", "!=", "j"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f7f141ed-905d-4f4c-8b95-b4228f15616a"],
+ ".  The set is orthonormal if\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["p", "i"], ".", 
+     SubscriptBox["p", "j"]}], "=", 
+    RowBox[{
+     SubscriptBox["\[Delta]", "ij"], "=", 
+     RowBox[{"{", GridBox[{
+        {"1", 
+         RowBox[{
+          RowBox[{"if", " ", "i"}], "=", "j"}]},
+        {"0", 
+         RowBox[{
+          RowBox[{"if", " ", "i"}], "\[NotEqual]", "j"}]}
+       }]}]}]}], TraditionalForm]],ExpressionUUID->
+  "38cd65bd-ae97-426f-b22f-3c43770462bb"]
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.8795862315927753`*^9, 
+  3.8795863755172157`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"336bde61-3d29-48f3-8237-91c6ec899755"],
+
+Cell[TextData[{
+ "A square matrix ",
+ Cell[BoxData[
+  FormBox["Q", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "bcd9e8d9-58c5-4613-ae32-2b064f2821d3"],
+ " is orthogonal if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"Q", "\[Transpose]"}], "=", 
+    SuperscriptBox["Q", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "71a352b3-b96d-4e72-9377-9b4faceb1d15"],
+ ".  \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Q", "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox["p", "1"], "|", 
+      SubscriptBox["p", "2"], "|", "\[Ellipsis]", "|", 
+      SubscriptBox["p", "m"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5249e0be-6553-44e9-af90-d08332e2d42b"],
+ "\nis orthogonal iff the set of vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", 
+     RowBox[{"1", ":", "m"}]], "\[Subset]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "m"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "14300e57-b6f0-4d43-ba94-fb13f1ec89cc"],
+ " are orthonormal."
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+   3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.8795862315927753`*^9, 
+   3.8795865484416237`*^9}, 3.8795866342030535`*^9},
+ LineSpacing->{1.5, 3},ExpressionUUID->"e0ceadd1-fb30-449c-9a7d-4aef6b305249"],
+
+Cell[TextData[{
+ "A tall skinny (TS) ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"m", "\[Times]", "n"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "93b81499-dce5-429c-a3bb-6294c96a3b3f"],
+ " matrix ",
+ Cell[BoxData[
+  FormBox["Q", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8fce896c-8b41-43ec-ac0b-effded315d6a"],
+ " is orthogonal if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"Q", "\[Transpose]"}], ".", "Q"}], "=", 
+    SubscriptBox["I", "n"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "59acc512-5865-408b-be05-33b6d199eb81"],
+ " is orthogonal iff the set of vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", 
+     RowBox[{"1", ":", "n"}]], "\[Subset]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "m"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "75d6c126-6f4f-4101-8f6b-da1372cf9b37"],
+ " are orthonormal."
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.8795862315927753`*^9, 
+  3.8795866785377135`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"ca767ab8-7c00-4441-bc0c-de8f820e7356"],
+
+Cell[TextData[{
+ "An indexed set of vectors ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "i"], TraditionalForm]],ExpressionUUID->
+  "b26b115e-c777-490d-829f-b270a5c13fb0"],
  " are conjugate with respect to a matrix A if for ",
  Cell[BoxData[
   FormBox[
-   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
-  "26c0f24e-3039-4e25-a213-d4c80d911bd2"],
+   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],ExpressionUUID->
+  "10797d3c-7757-41ae-b8b7-415af253b0e7"],
  "\n\t",
  Cell[BoxData[
   FormBox[
    RowBox[{
     RowBox[{
      SubscriptBox["p", "i"], ".", "A", ".", 
-     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
-  "c94ccfbb-d57b-4cb6-a431-9456321c3ad8"],
+     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "fe946466-3684-468d-b44b-58bbb8a463ec"],
  "."
 }], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
  CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
-  3.8795214433783693`*^9, 
-  3.8795214810368514`*^9}},ExpressionUUID->"23536cb4-f6b7-489c-beef-\
-556fa475eb47"]
-}, Open  ]],
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"4c4e150d-7b19-4bb4-aa8d-6c3e814650d2"],
 
-Cell[CellGroupData[{
+Cell[TextData[{
+ "Two sets of indexed vectors ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "i"], TraditionalForm]],ExpressionUUID->
+  "e87aab69-f4c7-4884-ac80-79be69a31943"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    FormBox[
+     SubscriptBox[
+      OverscriptBox["p", "^"], "i"],
+     TraditionalForm], " "}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8007d19e-fa5b-4503-bd96-59fc868fa538"],
+ "are bi-conjugate with respect to a matrix A if for ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],ExpressionUUID->
+  "2ed08f14-5ac6-40e6-ba87-814f3f94ba73"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "179360ea-6b85-41de-8c19-8dba4435a1e1"],
+ "."
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879587818320594*^9, 
+  3.8795878975377846`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"2e53ff6a-8260-420b-bf9a-9ac7baf42592"],
 
-Cell["Inner Product", "Section",
- CellChangeTimes->{{3.8795213014688363`*^9, 3.8795213095143857`*^9}, {
-  3.8795215010444903`*^9, 
-  3.879521504364625*^9}},ExpressionUUID->"1092c15a-6437-4e20-af6e-\
-4068c5d2551f"],
+Cell[TextData[{
+ "A pair ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Lambda]", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "21047a32-c793-47a8-b5c6-db88a9cca252"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["v", "i"], "\[NotEqual]", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8452db3b-f6c7-427c-a75a-7c7706fb50e2"],
+ " satisfying \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", 
+     SubscriptBox["v", "i"]}], "=", 
+    RowBox[{
+     SubscriptBox["\[Lambda]", "i"], " ", 
+     SubscriptBox["v", "i"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1fd1b9a6-c246-49e1-bb3c-eae716170c68"],
+ "\nis an eigenpair of a square matrix ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d5051f10-65a5-4ef1-bbaf-25a7ca21a0e3"],
+ "."
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584335959775*^9, 
+  3.8795846412730036`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"3576b779-d50d-4d14-84e7-3eb1e1074112"],
+
+Cell["\<\
+Almost all square matrices have a full set of linearly independent (LI) \
+eigenvectors. 
+Unusual matrices that do not have a full set are  \
+\[OpenCurlyDoubleQuote]defective\[CloseCurlyDoubleQuote].  
+Matrices that have a full set of LI eigenvectors are \
+\[OpenCurlyDoubleQuote]diagonalizable\[CloseCurlyDoubleQuote] or sometimes \
+\[OpenCurlyDoubleQuote]semi-simple\[CloseCurlyDoubleQuote]. \
+\>", "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584335959775*^9, 
+  3.879584547071086*^9}, {3.8795846554032764`*^9, 3.879584828985243*^9}, {
+  3.8795848651419997`*^9, 3.8795849005151095`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"3f905d9c-b3be-4d61-b31e-c60bc0dfef51"],
+
+Cell[TextData[{
+ "The eigen decomposition of a matrix ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "9153ad5f-8db3-4c33-ae7f-0c6a10e33e7a"],
+ " is \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "=", 
+    RowBox[{"V", ".", "\[CapitalLambda]", ".", 
+     SuperscriptBox["V", 
+      RowBox[{"-", "1"}]]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c36a3deb-64bc-4a5f-a5dd-0a9736a7cb35"],
+ "\nwhere ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"V", "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox["v", "1"], "|", 
+      SubscriptBox["v", "2"], "|", "\[Ellipsis]", "|", 
+      SubscriptBox["v", "m"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1720e85d-00ad-4db7-b532-61b6c4381758"],
+ " is the matrix with columns of eigenvectors and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[CapitalLambda]", "=", 
+    RowBox[{"diag", "(", 
+     RowBox[{
+      SubscriptBox["\[Lambda]", "1"], ",", 
+      SubscriptBox["\[Lambda]", "2"], ",", "\[Ellipsis]", ",", 
+      SubscriptBox["\[Lambda]", "m"]}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a7775651-8774-4ba6-b82e-796a22689596"],
+ " is the diagonal matrix formed from the eigenvalues. "
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584335959775*^9, 
+  3.879584547071086*^9}, {3.879585941757921*^9, 3.879585958166623*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"915a86bb-bf45-4bc6-a9b1-a2bff1a49283"],
+
+Cell[TextData[{
+ "A real symmetric matrix ",
+ Cell[BoxData[
+  FormBox["S", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4c5676c5-893f-4dc7-b4c1-9434aeec2c1f"],
+ " has an orthogonal set of eigenvectors with real eigenvalues.  We write the \
+eigen decomposition of S as written \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"S", "=", 
+    RowBox[{"Q", ".", "\[CapitalLambda]", ".", 
+     SuperscriptBox["Q", "\[Transpose]"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4a472085-9d5c-4249-b5dc-bfd270afe298"],
+ "\nto remind us that the matrix of eigenvectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Q", "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox["v", "1"], "|", 
+      SubscriptBox["v", "2"], "|", "\[Ellipsis]", "|", 
+      SubscriptBox["v", "m"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "577bb38d-6ac3-4b5a-a5cc-b6bed7948ff6"],
+ " is orthogonal i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"Q", "\[Transpose]"}], "=", 
+    SuperscriptBox["Q", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d6bf69cc-6486-49c1-ac0a-2a98e198d691"]
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584335959775*^9, 
+  3.879584547071086*^9}, {3.879585941757921*^9, 3.879585958166623*^9}, {
+  3.8795860037610936`*^9, 3.8795861971934958`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"f2ca0d32-b092-41b3-8614-5bacd38ba582"],
 
 Cell[TextData[{
  "If ",
  Cell[BoxData[
-  FormBox["A", TraditionalForm]],
+  FormBox["A", TraditionalForm]],ExpressionUUID->
+  "3a0981db-f2c7-43d8-b864-c472781c18a6"],
+ " is symmetric and positive definite (SPD) then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "=", 
+    RowBox[{"Q", ".", "\[CapitalLambda]", ".", 
+     RowBox[{"Q", "\[Transpose]"}]}]}], TraditionalForm]],
   FormatType->TraditionalForm,ExpressionUUID->
-  "9c485a48-46ff-4e6c-a81b-016405fc7d49"],
- " is SPD then it defines an alternative inner product\n\t",
+  "ac3f262a-0320-49ef-b06a-4a03d5e6a8f3"],
+ " and the unique SPD square root is\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SqrtBox["A"], "=", 
+    RowBox[{"Q", ".", 
+     SqrtBox["\[CapitalLambda]"], ".", 
+     RowBox[{"Q", "\[Transpose]"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0a2a39bf-ff93-42eb-9a63-36f24700f3cb"],
+ ".\nwhere ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SqrtBox["\[CapitalLambda]"], "=", 
+    RowBox[{"diag", "(", 
+     RowBox[{
+      SqrtBox[
+       SubscriptBox["\[Lambda]", "1"]], ",", 
+      SqrtBox[
+       SubscriptBox["\[Lambda]", "2"]], ",", "\[Ellipsis]", ",", 
+      SqrtBox[
+       SubscriptBox["\[Lambda]", "m"]]}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "61be710e-42d5-4bbb-b1c6-2df3941e974f"],
+ " is the diagonal matrix formed from the positive square roots of the \
+eigenvalues.  "
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584077260851*^9, 
+  3.8795843279893255`*^9}, {3.8795858804574823`*^9, 3.8795858973299417`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"5b5e603f-6317-4397-953e-22ea36915722"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],ExpressionUUID->
+  "da07bf24-7912-4cc4-82b8-a812a0d40f1f"],
+ " is symmetric and positive definite (SPD) then it defines the alternative \
+inner product\n\t",
  Cell[BoxData[
   FormBox[
    RowBox[{
@@ -103,19 +434,374 @@ Cell[TextData[{
          SqrtBox["A"], ".", "x"}], ",", 
         RowBox[{
          SqrtBox["A"], ".", "y"}]}], "\[RightAngleBracket]"}], " "}]}]}], 
-   TraditionalForm]],
+   TraditionalForm]],ExpressionUUID->"34e1cc4b-ad02-446e-aff8-bbda019ccc84"]
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584077260851*^9, 
+  3.8795841010464582`*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"63939e3c-70de-4aaa-a94e-c65b268cd968"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],ExpressionUUID->
+  "955b8df5-9250-42d9-b9dd-4063e65951d5"],
+ " is not SPD then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"x", ".", "A", ".", "y"}], TraditionalForm]],
   FormatType->TraditionalForm,ExpressionUUID->
-  "a61a4f4e-e0b9-4b1f-8149-41b6f0511f4a"]
+  "994fe04b-4761-46cf-ad6e-171f02c91197"],
+ " is not an inner product."
+}], "Text",
+ CellFrame->{{3, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795214810368514`*^9}, {3.879584077260851*^9, 
+  3.8795841010464582`*^9}, {3.879586918556692*^9, 3.879586965342351*^9}},
+ LineSpacing->{1.5, 3},ExpressionUUID->"3b403239-ed29-44aa-b72b-30be963c7236"],
+
+Cell[CellGroupData[{
+
+Cell["Conjugate Directions: What are they good for?", "Section",
+ CellChangeTimes->{{3.8795213014688363`*^9, 3.8795213095143857`*^9}, {
+  3.8795215010444903`*^9, 3.879521504364625*^9}, {3.8795869944401712`*^9, 
+  3.8795870274486046`*^9}},ExpressionUUID->"1092c15a-6437-4e20-af6e-\
+4068c5d2551f"],
+
+Cell[TextData[{
+ "A set of ",
+ Cell[BoxData[
+  FormBox["m", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "615b868b-4620-47e6-aff4-ce6666cfc4a4"],
+ " conjugate directions ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", 
+    RowBox[{"1", ":", "m"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a42e7534-95ca-40ee-890f-c6ae392b71cf"],
+ " in ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "m"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "08aa0b3e-4939-4427-aff5-88c2cc9879b0"],
+ " form a basis for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "m"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d9ff9ed2-b95b-4000-82d5-9771be3ebd9b"],
+ ".  So the solution ",
+ Cell[BoxData[
+  FormBox["x", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4c7bb8d9-2590-4851-99c9-0c8ba05911d4"],
+ " of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b916fd73-edfb-4771-aa84-3546c313aa42"],
+ " can be written \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"x", "=", 
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      SubscriptBox["p", "j"]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "13abae6c-223f-479e-9772-cf138ed5ec87"],
+ ".\nMultiply by ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "340a76bc-cefb-434e-9898-a60806ae9861"],
+ " and plug into ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "7655111f-62a5-4142-a180-4566b9c07b1e"],
+ " to get\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{"A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "12bd2ade-7671-4a43-b0f2-59f2a982a8e5"],
+ "\nand the take the inner product with ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d41464b6-4640-448e-b7e6-a4429e46db7f"],
+ " to get\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{
+       SubscriptBox["p", "i"], ".", "A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", 
+    RowBox[{
+     SubscriptBox["p", "i"], ".", "b"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "57f6df74-f00a-41cb-8c9a-8447a9071647"],
+ ".\nThe conjugate direction condition ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["p", "i"], ".", "A", ".", 
+     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2fd4a13f-d760-49e6-8fdb-299cdc231c40"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "819ed27c-73d2-4844-9449-990dafa700de"],
+ " eliminates the sum giving\n\t ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{
+       SubscriptBox["p", "i"], ".", "A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Alpha]", "i"], 
+      RowBox[{
+       SubscriptBox["p", "i"], ".", "A", ".", 
+       SubscriptBox["p", "i"]}]}], "=", 
+     RowBox[{
+      SubscriptBox["p", "i"], ".", "b"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "efed750a-3e97-4c42-a3cf-2fdc39973a5a"],
+ "\nand finally the simple recipe for the coefficients\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[Alpha]", "i"], "=", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["p", "i"], ".", "b"}], 
+     RowBox[{
+      SubscriptBox["p", "i"], ".", "A", ".", 
+      SubscriptBox["p", "i"]}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "82dd11fe-f310-4103-9349-c463e4f04f4a"],
+ "."
 }], "Text",
  CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
-  3.8795214433783693`*^9, 
-  3.8795217335967474`*^9}},ExpressionUUID->"fe905263-2c76-4db7-8f5f-\
+  3.8795214433783693`*^9, 3.8795217335967474`*^9}, {3.879587034109315*^9, 
+  3.879587706494594*^9}},ExpressionUUID->"fe905263-2c76-4db7-8f5f-\
 36ced6786cf8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Bi-Conjugate Directions: What are they good for?", "Section",
+ CellChangeTimes->{{3.8795213014688363`*^9, 3.8795213095143857`*^9}, {
+  3.8795215010444903`*^9, 3.879521504364625*^9}, {3.8795869944401712`*^9, 
+  3.8795870274486046`*^9}, {3.8795879270844955`*^9, 
+  3.87958792783439*^9}},ExpressionUUID->"cdada7eb-71a0-4c02-9899-\
+303466d58f8b"],
+
+Cell[TextData[{
+ "If two sets of ",
+ Cell[BoxData[
+  FormBox["m", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "3e6e936d-c0a4-460f-acff-08532f6e8fb5"],
+ " LI vectors ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", 
+    RowBox[{"1", ":", "m"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f87e31b0-db30-4d98-a430-a551ddaecaf5"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["p", "^"], 
+    RowBox[{"1", ":", "m"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "663d1b5e-a307-4d6e-ba4d-07e36e7ce937"],
+ " in ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[DoubleStruckCapitalR]", "m"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "381d0e91-7550-4dc9-a037-05201e57cdb9"],
+ " are bi-conjugate then solution ",
+ Cell[BoxData[
+  FormBox["x", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c051efeb-563e-4017-9b2b-dea1267a8f92"],
+ " of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "07f4e525-3d39-4c95-9e58-54731d7e82a4"],
+ " can be written \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"x", "=", 
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      SubscriptBox["p", "j"]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f1dbe3a8-685b-46ca-bda7-b2eb10fbe418"],
+ ".\nMultiply by ",
+ Cell[BoxData[
+  FormBox["A", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4b1662db-bf2b-4861-8262-81abed5e6b6e"],
+ " and plug into ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c4e086a2-f664-4ef4-8e13-f8d3ff7b43e7"],
+ " to get\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{"A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", "b"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e0f60c16-ca98-4051-a28e-4777930d6f97"],
+ "\nand the take the inner product with ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["p", "^"], "i"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "048b9509-25a6-42bf-a8ef-66bde49cfa7f"],
+ " to get\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{
+       SubscriptBox[
+        OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", 
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["p", "^"], "i"], ".", "b"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "77097328-29d5-4ab9-b92b-7c94d6b716de"],
+ ".\nThe bi-conjugate direction condition ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+     SubscriptBox["p", "j"]}], "=", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "47b3a39f-3950-4b76-a05e-998f2667d8d0"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", "\[NotEqual]", "j"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "9acdd70a-3d30-402d-b279-5e3753469ffe"],
+ " eliminates the sum giving\n\t ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"j", "=", "1"}], "m"], 
+     RowBox[{
+      SubscriptBox["\[Alpha]", "j"], 
+      RowBox[{
+       SubscriptBox[
+        OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+       SubscriptBox["p", "j"]}]}]}], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Alpha]", "i"], 
+      RowBox[{
+       SubscriptBox[
+        OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+       SubscriptBox["p", "i"]}]}], "=", 
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["p", "^"], "i"], ".", "b"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "77331878-3707-4c99-a303-a3d3933b5b12"],
+ "\nand finally the simple recipe for the coefficients\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[Alpha]", "i"], "=", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["p", "^"], "i"], ".", "b"}], 
+     RowBox[{
+      SubscriptBox[
+       OverscriptBox["p", "^"], "i"], ".", "A", ".", 
+      SubscriptBox["p", "i"]}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "3cfea271-2f43-4d59-9b2c-74a536ebf8c7"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.879521319864833*^9, 3.879521395579519*^9}, {
+  3.8795214433783693`*^9, 3.8795217335967474`*^9}, {3.879587034109315*^9, 
+  3.879587706494594*^9}, {3.8795879376586514`*^9, 
+  3.8795881106761475`*^9}},ExpressionUUID->"47e93b57-fcd4-4b26-951d-\
+1866f4186824"]
 }, Open  ]]
 }, Open  ]]
 },
+WindowToolbars->"EditBar",
 WindowSize->{1189.5, 562.},
-WindowMargins->{{1375, Automatic}, {-10.5, Automatic}},
+WindowMargins->{{1487.5, Automatic}, {Automatic, -251}},
 TaggingRules->Association["TryRealOnly" -> False],
 FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
 StyleDefinitions->"Default.nb",
@@ -133,15 +819,26 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 161, 3, 98, "Title",ExpressionUUID->"d2347fc2-67e6-4907-b249-ebe62edc85b0"],
-Cell[744, 27, 186, 3, 35, "Text",ExpressionUUID->"78659969-bcb9-4a74-8bd1-2e45439d10a2"],
+Cell[580, 22, 237, 4, 98, "Title",ExpressionUUID->"d2347fc2-67e6-4907-b249-ebe62edc85b0"],
+Cell[820, 28, 1419, 44, 96, "Text",ExpressionUUID->"336bde61-3d29-48f3-8237-91c6ec899755"],
+Cell[2242, 74, 1428, 41, 109, "Text",ExpressionUUID->"e0ceadd1-fb30-449c-9a7d-4aef6b305249"],
+Cell[3673, 117, 1256, 36, 43, "Text",ExpressionUUID->"ca767ab8-7c00-4441-bc0c-de8f820e7356"],
+Cell[4932, 155, 846, 24, 78, "Text",ExpressionUUID->"4c4e150d-7b19-4bb4-aa8d-6c3e814650d2"],
+Cell[5781, 181, 1189, 36, 78, "Text",ExpressionUUID->"2e53ff6a-8260-420b-bf9a-9ac7baf42592"],
+Cell[6973, 219, 1200, 36, 109, "Text",ExpressionUUID->"3576b779-d50d-4d14-84e7-3eb1e1074112"],
+Cell[8176, 257, 797, 14, 109, "Text",ExpressionUUID->"3f905d9c-b3be-4d61-b31e-c60bc0dfef51"],
+Cell[8976, 273, 1621, 43, 109, "Text",ExpressionUUID->"915a86bb-bf45-4bc6-a9b1-a2bff1a49283"],
+Cell[10600, 318, 1586, 41, 109, "Text",ExpressionUUID->"f2ca0d32-b092-41b3-8614-5bacd38ba582"],
+Cell[12189, 361, 1625, 45, 117, "Text",ExpressionUUID->"5b5e603f-6317-4397-953e-22ea36915722"],
+Cell[13817, 408, 1274, 34, 82, "Text",ExpressionUUID->"63939e3c-70de-4aaa-a94e-c65b268cd968"],
+Cell[15094, 444, 694, 17, 43, "Text",ExpressionUUID->"3b403239-ed29-44aa-b72b-30be963c7236"],
 Cell[CellGroupData[{
-Cell[955, 34, 158, 3, 67, "Section",ExpressionUUID->"d06c7491-85a7-4e27-8966-5140bc1bc1d6"],
-Cell[1116, 39, 888, 27, 59, "Text",ExpressionUUID->"23536cb4-f6b7-489c-beef-556fa475eb47"]
+Cell[15813, 465, 295, 4, 67, "Section",ExpressionUUID->"1092c15a-6437-4e20-af6e-4068c5d2551f"],
+Cell[16111, 471, 4693, 151, 264, "Text",ExpressionUUID->"fe905263-2c76-4db7-8f5f-36ced6786cf8"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2041, 71, 213, 4, 67, "Section",ExpressionUUID->"1092c15a-6437-4e20-af6e-4068c5d2551f"],
-Cell[2257, 77, 1200, 35, 64, "Text",ExpressionUUID->"fe905263-2c76-4db7-8f5f-36ced6786cf8"]
+Cell[20841, 627, 348, 5, 67, "Section",ExpressionUUID->"cdada7eb-71a0-4c02-9899-303466d58f8b"],
+Cell[21192, 634, 5021, 163, 268, "Text",ExpressionUUID->"47e93b57-fcd4-4b26-951d-1866f4186824"]
 }, Open  ]]
 }, Open  ]]
 }
