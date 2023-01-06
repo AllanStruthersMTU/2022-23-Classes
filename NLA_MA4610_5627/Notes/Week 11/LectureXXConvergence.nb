@@ -1,0 +1,679 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24146,        671]
+NotebookOptionsPosition[     21383,        615]
+NotebookOutlinePosition[     22001,        636]
+CellTagsIndexPosition[     21958,        633]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["XX: Convergence", "Title",
+ CellChangeTimes->CompressedData["
+1:eJwdzk0og3EAx/HHSzwkBwcvNXlpLrKpHYaDtEVZnETJQRKyg5eQ94kDN/JO
+IyREGMNBUTbLDBPynrewbM88i81rKfx//8Ovz+3XNyK/LKPQnWGYMDIod5cz
+O9O8bPNq3A2qWUvyK7Gyk02F7b8SXyfRWDviB+3p5mgXcVr2QE2fGh99I3Y/
+a8agf014pGCGl8W9OamtwQnLocRyo4na8654rCAuphgtMOp6mFMTC3wm7FCe
+rdUNEZsbfvRQa6iLmSOyXUliaGbaKvREYVZQFezoXdPBxhsTdamvXnNGPNhT
+L0DWfLQBMxSVOrjCdd5Dg8tqgZ7H1RxUBLTboXLraPKcKIm+moJNxiQDFAzW
+U6/jd7ahqb/UBIUvmccwcL74BKYlii6hl7OL6hCo7uCTTUvNVO1aYO5Xjg2q
+lC08jC9yOuj/h8gFD4OU1NuPvk8YIYr7gt8lHn8wr2rA44IYMtviDaXCSBbu
+WzmxY5WX5TyFxkKpVcPdrJN+/tQO/wEOHSrZ
+  "],ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+
+Cell[TextData[{
+ "We want to quantify how fast a sequence of errors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", "k"], "\[GreaterEqual]", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0c501a11-d5e1-4639-bd48-57c55f644ade"],
+ " converges to zero.  There are lots of properties (in addition to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", "k"], "\[Rule]", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "7bc1a33b-41a9-4b86-af9f-b4ba1a7bf4de"],
+ ") that would be useful.  "
+}], "Text",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8560901823257103`*^9, 3.856090323750142*^9}, {
+   3.857117017568968*^9, 3.857117166833606*^9}, {3.857117335700138*^9, 
+   3.8571173378816214`*^9}},ExpressionUUID->"19c34891-b4a5-4bb2-9167-\
+f8ac0b4049d9"],
+
+Cell[TextData[{
+ "Non-increasing i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    SubscriptBox["e", "k"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "55cc7513-ffd8-494d-8e7d-a18b56d587ff"],
+ "  is great.  However, we will rarely know that this holds for an entire \
+sequence and eventually non-increasing i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    SubscriptBox["e", "k"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "075dd9b2-c334-4b8b-8552-eeea67d21c59"],
+ " for all ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"k", "\[GreaterEqual]", "K"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1a202555-b2aa-4d6e-aa6e-d15c30a30219"],
+ " is just about as good."
+}], "Item",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8560901823257103`*^9, 3.856090323750142*^9}, {
+   3.857117017568968*^9, 3.8571173096614256`*^9}, {3.857120394961598*^9, 
+   3.8571203959775114`*^9}},ExpressionUUID->"b3fc7796-0d44-468f-96e6-\
+633cb3b96d8b"],
+
+Cell[CellGroupData[{
+
+Cell["Convergence Types", "Subsection",
+ CellChangeTimes->{{3.8571204075974703`*^9, 
+  3.857120438080402*^9}},ExpressionUUID->"9b70afe2-485f-449d-b27e-\
+be808b76d0d5"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Asymptotic Linear Convergence i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "<", 
+    RowBox[{"C", " ", 
+     SubscriptBox["e", "k"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fcdc087b-3296-4914-a882-cb86a3bd8d7e"],
+ " for all ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"k", "\[GreaterEqual]", "K"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fd687626-1d93-46fe-940e-09465eb2a6f8"],
+ " is only useful if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"C", "<", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5917c45a-b835-42d7-9990-2882502d06e2"],
+ " and only good if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"C", " "}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "286c3f11-2a55-4deb-9277-c3496d903040"],
+ "is reasonable well below 1. You are working with this for the HW."
+}], "Item",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8560901823257103`*^9, 3.856090323750142*^9}, {
+   3.857117017568968*^9, 
+   3.857117444148632*^9}},ExpressionUUID->"7bd1fa92-a7cd-4d54-b0ba-\
+22566044f042"],
+
+Cell[TextData[{
+ "Super Linear Convergence ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[Limit]", 
+      RowBox[{"k", "\[Rule]", "\[Infinity]"}]], 
+     FractionBox[
+      SubscriptBox["e", 
+       RowBox[{"k", "+", "1"}]], 
+      SubscriptBox["e", "k"]]}], "=", "0.", " "}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b258d728-63ab-415b-9e5b-a1a2e3d1ca58"],
+ "      "
+}], "Item",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8560901823257103`*^9, 3.856090323750142*^9}, {
+   3.857117017568968*^9, 3.8571176709193935`*^9}, {3.8571177896860476`*^9, 
+   3.8571178590750647`*^9}},ExpressionUUID->"4a1077b8-d856-44ca-bb80-\
+2081cecec81c"],
+
+Cell[TextData[{
+ "Asymptotic Quadratic (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Alpha]", "=", "2"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "320e5380-a527-4c90-9dab-9994c6baf6b0"],
+ ") Cubic (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Alpha]", "=", "3"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "755347a1-74eb-4f6f-a701-5c5848e92596"],
+ ") Convergence i.e.  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "<", 
+    RowBox[{"C", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       SubscriptBox["e", "k"], ")"}], "\[Alpha]"], "     ", 
+     RowBox[{"\[ForAll]", 
+      RowBox[{"k", "\[GreaterEqual]", "K", " "}]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8dfcc483-7f22-4ed6-b306-57fcfe9af8f3"],
+ " is useful for any constant C.  Lets see what this means for a general ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Alpha]", ">", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "33a91cc6-36ca-4006-bebc-3a2f62789b39"],
+ ".      "
+}], "Item",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8560901823257103`*^9, 3.856090323750142*^9}, {
+   3.857117017568968*^9, 
+   3.8571176709193935`*^9}},ExpressionUUID->"0d02dfd8-d39a-40a1-adb8-\
+f3ebb5745858"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Subsection",
+ CellChangeTimes->{{3.8571204853816204`*^9, 
+  3.857120488083294*^9}},ExpressionUUID->"0c2dcc0d-2383-4cd6-9a6c-\
+76b1d868a471"],
+
+Cell[TextData[{
+ "Linear convergence is slow if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"C", "\[TildeTilde]", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2185cc26-10cb-427d-8dad-0dc9fdebf3d4"],
+ ". In practice, linear convergence is too slow unless the constant ",
+ Cell[BoxData[
+  FormBox["C", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "474c862a-2feb-4bfc-aca0-ad5bbd914220"],
+ " is significantly less than one. Super linear convergence is basically \
+linear convergence with a constant that gets smaller as you go further out in \
+the sequence. In practice, superlinear convergence is very useful.  In \
+practice, quadratic and cubic convergence are so fast at the end that you can \
+hardly see them. Lets see how to think about this!"
+}], "Text",
+ CellChangeTimes->{{3.857117750159884*^9, 3.857117753631731*^9}, {
+  3.8571178896236067`*^9, 3.857118105200029*^9}, {3.857118143436535*^9, 
+  3.8571182152086077`*^9}, {3.857118570038478*^9, 
+  3.8571185790334525`*^9}},ExpressionUUID->"26f7811b-551a-4670-9ffe-\
+843b45ac88f1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Quadratic and Cubic Convergence", "Subsection",
+ CellChangeTimes->{{3.8571204853816204`*^9, 
+  3.8571205141789865`*^9}},ExpressionUUID->"02422dfc-89f9-475f-8d0f-\
+e316dac0992f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Suppose we know that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", "k"], "\[Rule]", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "9aac1e3a-70bf-4cde-b6d3-ae2c90475089"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    RowBox[{"C", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       SubscriptBox["e", "k"], ")"}], "\[Alpha]"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "cdc5b7fb-9203-42e7-82ab-d8f30bf88099"],
+ ". We want to get a feel for what this means. "
+}], "Item",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118414373125*^9}, {
+  3.857118562577862*^9, 
+  3.8571185860710735`*^9}},ExpressionUUID->"069a9731-c0e1-4707-91e5-\
+a382aefd80d6"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The first step is to see why the constant ",
+ Cell[BoxData[
+  FormBox["C", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "241cafe2-0a30-4cc2-b2fe-af7f222ca536"],
+ " does not matter that much! "
+}], "Subitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 
+  3.857118818441296*^9}},ExpressionUUID->"8cc9c506-504b-4bba-8c27-\
+6942a32dca00"],
+
+Cell[TextData[{
+ "There is a constant ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Gamma]", ">", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "509a81df-b758-4d65-82e9-4411daed4d4a"],
+ " that eliminates C in the sense that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    RowBox[{"C", " ", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        SubscriptBox["e", "k"], ")"}], "\[Alpha]"], " ", 
+      "\[DoubleLongLeftRightArrow]", 
+      RowBox[{"(", 
+       RowBox[{"\[Gamma]", " ", 
+        SubscriptBox["e", 
+         RowBox[{"k", "+", "1"}]]}], ")"}]}]}], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Gamma]", " ", 
+       SubscriptBox["e", "k"]}], ")"}], "\[Alpha]"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ee30ffaa-e4f0-4410-a747-0705715df48f"],
+ ". Expand the inequality with ",
+ Cell[BoxData[
+  FormBox["\[Gamma]", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "152a4d82-49bd-4d7c-bb39-ee731bb63f16"],
+ " to get ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Gamma]", " ", 
+     SubscriptBox["e", 
+      RowBox[{"k", "+", "1"}]]}], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["\[Gamma]", "\[Alpha]"], "(", " ", 
+      SubscriptBox["e", "k"], ")"}], "\[Alpha]"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0c19d844-5af9-404b-857f-70480ad55527"],
+ ". Divide through by ",
+ Cell[BoxData[
+  FormBox["\[Gamma]", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "089d0592-2c8c-470d-a347-1cd5c2576c1f"],
+ " and match to see that we need ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"C", "=", 
+    SuperscriptBox["\[Gamma]", 
+     RowBox[{"\[Alpha]", "-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "453c9883-8c67-4b37-a405-2322340ee414"],
+ "or equivalently ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Gamma]", "=", 
+    SuperscriptBox["C", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{"\[Alpha]", "-", "1"}], ")"}]}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a63603e3-81ef-4b95-bea6-d49477354209"],
+ ".  "
+}], "Subsubitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 
+  3.8571188234158683`*^9}},ExpressionUUID->"342a62a2-2844-4118-8341-\
+cf4947b92424"],
+
+Cell[TextData[{
+ "The next step is to work with the simpler inequality ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      SubscriptBox["f", "k"], ")"}], "\[Alpha]"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f47e8e0d-99b7-46e6-9223-5a1742f6bfee"],
+ " for ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", "k"], "=", 
+    RowBox[{"\[Gamma]", " ", 
+     SubscriptBox["e", "k"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "441bd41c-f8c4-44b5-bc88-5f76dfb77294"],
+ "."
+}], "Subitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 
+  3.857118935236527*^9}},ExpressionUUID->"bbd41ca1-25c0-4ef2-8492-\
+78d93b68794d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Chain two of them together to get ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "2"}]], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      SubscriptBox["f", 
+       RowBox[{"k", "+", "1"}]], ")"}], "\[Alpha]"], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      SubscriptBox["f", "k"], ")"}], 
+     RowBox[{"2", "\[Alpha]"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "60701cc7-dd99-4a2b-9c3d-d811df4c9a1f"],
+ "."
+}], "Subsubitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 
+  3.857119008237335*^9}},ExpressionUUID->"c478a930-7e35-4aa1-9f9b-\
+5fb17d163831"],
+
+Cell[TextData[{
+ "Show by induction that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", 
+     SubscriptBox["f", 
+      RowBox[{"k", "+", "r"}]], ")"}], "\[LessEqual]", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      SubscriptBox["f", "k"], ")"}], 
+     RowBox[{"r", " ", "\[Alpha]"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "17443972-fb5c-4de8-a1f7-1218b33bae7a"],
+ ".  As a result once ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", "k"], "<", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "db999e91-7fce-4b19-9376-83a2331f8c01"],
+ " we get very rapid convergence.    "
+}], "Subsubitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 3.8571189464503703`*^9}, {3.8571190104725876`*^9, 
+  3.8571190653747754`*^9}, {3.8571205250659475`*^9, 
+  3.857120600016045*^9}},ExpressionUUID->"ac716ad0-c548-431e-b419-\
+066b7c37ff97"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Conclusion if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", "k"], "\[LessEqual]", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c51ed585-2939-4394-b8b4-2b8703ed5a4b"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "r"}]], "\[LessEqual]", " ", 
+    SuperscriptBox["10", 
+     RowBox[{
+      RowBox[{"-", "\[Alpha]"}], " ", "r"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1f123dc4-6193-4b56-aadd-d82fc4e3362f"],
+ ".  "
+}], "Subitem",
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 3.8571189464503703`*^9}, {3.8571190104725876`*^9, 
+  3.8571190653747754`*^9}, {3.8571205250659475`*^9, 3.857120719531822*^9}, {
+  3.8571207589129796`*^9, 
+  3.8571207718007355`*^9}},ExpressionUUID->"a72791ff-3a37-4a14-a0d5-\
+4ce4758a7406"],
+
+Cell[TextData[{
+ "Once ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", "k"], "=", "0.1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "70295161-167c-4200-86fe-324ee56fc934"],
+ ", if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Alpha]", "=", "2"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c6587f64-e399-4929-9118-4302503210cf"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", "0.01"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c8ad493d-5dad-45bf-9356-22f35565ddda"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "2"}]], "\[LessEqual]", "0.001"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5302d3ee-7df9-4513-8240-ccd5ec8b4274"],
+ ", and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "8"}]], "\[LessEqual]", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "16"}]], "\[TildeTilde]", 
+    SubscriptBox["\[Epsilon]", "m"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "82335a83-14a8-43c5-b12f-94c38844b8aa"]
+}], "Subsubitem",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.},
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 3.8571189464503703`*^9}, {3.8571190104725876`*^9, 
+  3.8571190653747754`*^9}, {3.8571205250659475`*^9, 3.857120719531822*^9}, {
+  3.8571207589129796`*^9, 3.8571209315785832`*^9}, {3.8571209926901517`*^9, 
+  3.8571211032764635`*^9}},ExpressionUUID->"48da17d6-0033-4d86-aa6a-\
+06bb0a5e9470"],
+
+Cell[TextData[{
+ "Once ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", "k"], "=", "0.1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fa7fc3c4-96ea-421c-ba2f-fe8e9d157ac6"],
+ ", if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Alpha]", "=", "3"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8e656d26-9dc3-4938-bce5-f35892ae134a"],
+ " then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", "0.001"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "be273b22-f270-4906-8d83-0e918ef2e7af"],
+ ", and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "1"}]], "\[LessEqual]", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2e664260-eaae-4edf-8564-2f3b11eb46fb"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["f", 
+     RowBox[{"k", "+", "5"}]], "\[LessEqual]", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "15"}]], "\[TildeTilde]", 
+    SubscriptBox["\[Epsilon]", "m"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a0d960e8-16f1-4061-8cf8-d70b8d2f89b8"]
+}], "Subsubitem",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.},
+ CellChangeTimes->{{3.857118226441033*^9, 3.857118524975461*^9}, {
+  3.8571186146152534`*^9, 3.8571189464503703`*^9}, {3.8571190104725876`*^9, 
+  3.8571190653747754`*^9}, {3.8571205250659475`*^9, 3.857120719531822*^9}, {
+  3.8571207589129796`*^9, 3.8571209315785832`*^9}, {3.8571209926901517`*^9, 
+  3.8571210853059683`*^9}, {3.8571211211086273`*^9, 
+  3.8571211598813667`*^9}},ExpressionUUID->"704640cf-4cd0-41d5-9dd0-\
+f082ab02d14a"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1268, 965},
+WindowMargins->{{1546, Automatic}, {98, Automatic}},
+TaggingRules-><|
+ "PresenterSettings" -> <|"Dialogs" -> {}|>, "TryRealOnly" -> False|>,
+Magnification:>1.5 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Aqua.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"8b79fe5a-2617-4059-883a-5ddd79c27364"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 655, 11, 184, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+Cell[1238, 35, 1320, 27, 83, "Text",ExpressionUUID->"19c34891-b4a5-4bb2-9167-f8ac0b4049d9"],
+Cell[2561, 64, 1635, 38, 77, "Item",ExpressionUUID->"b3fc7796-0d44-468f-96e6-633cb3b96d8b"],
+Cell[CellGroupData[{
+Cell[4221, 106, 167, 3, 72, "Subsection",ExpressionUUID->"9b70afe2-485f-449d-b27e-be808b76d0d5"],
+Cell[CellGroupData[{
+Cell[4413, 113, 1654, 41, 77, "Item",ExpressionUUID->"7bd1fa92-a7cd-4d54-b0ba-22566044f042"],
+Cell[6070, 156, 1244, 27, 57, "Item",ExpressionUUID->"4a1077b8-d856-44ca-bb80-2081cecec81c",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[7317, 185, 1803, 45, 77, "Item",ExpressionUUID->"0d02dfd8-d39a-40a1-adb8-f3ebb5745858"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9169, 236, 160, 3, 72, "Subsection",ExpressionUUID->"0c2dcc0d-2383-4cd6-9a6c-76b1d868a471"],
+Cell[9332, 241, 1083, 22, 150, "Text",ExpressionUUID->"26f7811b-551a-4670-9ffe-843b45ac88f1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10452, 268, 183, 3, 72, "Subsection",ExpressionUUID->"02422dfc-89f9-475f-8d0f-e316dac0992f"],
+Cell[CellGroupData[{
+Cell[10660, 275, 819, 25, 47, "Item",ExpressionUUID->"069a9731-c0e1-4707-91e5-a382aefd80d6"],
+Cell[CellGroupData[{
+Cell[11504, 304, 425, 11, 40, "Subitem",ExpressionUUID->"8cc9c506-504b-4bba-8c27-6942a32dca00"],
+Cell[11932, 317, 2450, 75, 99, "Subsubitem",ExpressionUUID->"342a62a2-2844-4118-8341-cf4947b92424"],
+Cell[14385, 394, 833, 26, 40, "Subitem",ExpressionUUID->"bbd41ca1-25c0-4ef2-8492-78d93b68794d"],
+Cell[CellGroupData[{
+Cell[15243, 424, 718, 22, 40, "Subsubitem",ExpressionUUID->"c478a930-7e35-4aa1-9f9b-5fb17d163831"],
+Cell[15964, 448, 954, 27, 40, "Subsubitem",ExpressionUUID->"ac716ad0-c548-431e-b419-066b7c37ff97"]
+}, Open  ]],
+Cell[16933, 478, 957, 28, 40, "Subitem",ExpressionUUID->"a72791ff-3a37-4a14-a0d5-4ce4758a7406"],
+Cell[17893, 508, 1667, 48, 40, "Subsubitem",ExpressionUUID->"48da17d6-0033-4d86-aa6a-06bb0a5e9470",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.}],
+Cell[19563, 558, 1768, 51, 40, "Subsubitem",ExpressionUUID->"704640cf-4cd0-41d5-9dd0-f082ab02d14a",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

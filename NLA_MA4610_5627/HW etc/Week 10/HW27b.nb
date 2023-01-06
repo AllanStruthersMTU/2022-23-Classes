@@ -1,0 +1,143 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5232,        135]
+NotebookOptionsPosition[      3967,        105]
+NotebookOutlinePosition[      4585,        126]
+CellTagsIndexPosition[      4542,        123]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["HW 27b ", "Title",
+ CellChangeTimes->CompressedData["
+1:eJwdxUEog2EYAODfkkaSHHDYCk1qjcMuJrT+NbKs1JqSAxKyC9qEjWkKt2lj
+pNFosaYYQw4om2W2mbQm0iZhsc2/2KYclHzvd3h6SrsHJb00giAYCCygCQiv
+lSLPQ+YM2EiPCL/QCh29Cdb+cXOSaPeYKReOi/3sFNpKvuDFFvNaGj3/YVuH
+80ZLyhhbFFmdTuJnimsOmOghtwe/8C16laP3GtwRuDy8GjOie7I34rCgze5Y
+QWvGf52w3aXkbKPpen4V7Cdm5U40q7VoGJ4znDjgiUcPfn9RZbtD31wZd2G6
+P3AGS0QKB3wY0z3DrtR7BM4MjsRgUYE2DssuApv3aC47ZIEn3XwXzFhW4cM8
+7yXsWRrwwKxPaRAu3Om/hZvrKx/grKQen2Con+C3qB0vVfsicMdPexRWy6Yo
+mNeXTMC1Qsn00TFFGvI1+MYWZaLzlCI5YR9eYDphdqHrKq7x/zWfCdA=
+  "],ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Implement a Rayleigh Quotient function in Julia that takes as arguments a \
+matrix A, an initial vector x, and an initial shift \[Mu].  The function \
+should run until successive shift estimates satisfy ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"|", 
+    RowBox[{
+     SubscriptBox["\[Mu]", 
+      RowBox[{"k", "+", "1"}]], "-", 
+     SubscriptBox["\[Mu]", "k"]}], "|", 
+    RowBox[{"\[LessEqual]", 
+     RowBox[{"|", 
+      SubscriptBox["\[Mu]", "k"], "|", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "8"}]]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d6283f1e-7219-44e4-8477-47899de550a2"],
+ " or ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"k", ">", 
+    SuperscriptBox["10", "3"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "50dd28f6-69df-4f22-9387-a5adc94d2c12"],
+ ".  It should return how many iterations the function took as well as the \
+current shift and eigenvector estimate. "
+}], "ItemNumbered",
+ CellChangeTimes->{{3.856859016471154*^9, 3.8568590877389116`*^9}, {
+  3.856859399378336*^9, 
+  3.8568597254732313`*^9}},ExpressionUUID->"6fefaf59-3012-40da-a5e5-\
+239adf465cf5"],
+
+Cell["\<\
+Test your function on the matrix A and initial vector x0 in the directory \
+with initial shift mu0=12.\
+\>", "SubitemNumbered",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.856859016471154*^9, 3.8568590877389116`*^9}, {
+  3.856859399378336*^9, 3.8568595355628357`*^9}, {3.8568627382692413`*^9, 
+  3.8568627488377876`*^9}, {3.8568627828187637`*^9, 
+  3.856862791195553*^9}},ExpressionUUID->"e5832721-3449-4a1e-8bf9-\
+09091f3ee9ed"],
+
+Cell["Time and Benchmark ", "ItemNumbered",
+ CellChangeTimes->{{3.856859016471154*^9, 3.8568590877389116`*^9}, {
+  3.856859399378336*^9, 3.8568597254732313`*^9}, {3.8568658212799006`*^9, 
+  3.8568659229538326`*^9}, {3.856865959738504*^9, 
+  3.856865959738504*^9}},ExpressionUUID->"3e7b9095-8858-44a5-8241-\
+a86819148da1"],
+
+Cell["\<\
+Time and Benchmark the command to compute singular values command in Julia.\
+\>", "SubitemNumbered",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.856859016471154*^9, 3.8568590877389116`*^9}, {
+  3.856859399378336*^9, 3.8568597254732313`*^9}, {3.8568658212799006`*^9, 
+  3.8568659229538326`*^9}, {3.8568659620588675`*^9, 
+  3.856865962763527*^9}},ExpressionUUID->"b07e9620-3316-4404-a36e-\
+af0b940d6ef5"],
+
+Cell[" Explain the difference between Time and Benchmark", "SubitemNumbered",
+ CellChangeTimes->{{3.856859016471154*^9, 3.8568590877389116`*^9}, {
+  3.856859399378336*^9, 3.8568597254732313`*^9}, {3.8568658212799006`*^9, 
+  3.856865975305072*^9}},ExpressionUUID->"2885da43-7610-4f7a-97c1-\
+26ae42b8f68a"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1268, 965},
+WindowMargins->{{1643, Automatic}, {68, Automatic}},
+TaggingRules-><|
+ "PresenterSettings" -> <|"Dialogs" -> {}|>, "TryRealOnly" -> False|>,
+Magnification:>1.5 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Aqua.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"73f1bee0-0048-45d7-8724-e8ec6b274918"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 606, 10, 184, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+Cell[CellGroupData[{
+Cell[1211, 36, 1162, 31, 152, "ItemNumbered",ExpressionUUID->"6fefaf59-3012-40da-a5e5-239adf465cf5"],
+Cell[2376, 69, 478, 9, 40, "SubitemNumbered",ExpressionUUID->"e5832721-3449-4a1e-8bf9-09091f3ee9ed",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[2857, 80, 321, 5, 50, "ItemNumbered",ExpressionUUID->"3e7b9095-8858-44a5-8241-a86819148da1"],
+Cell[3181, 87, 451, 8, 40, "SubitemNumbered",ExpressionUUID->"b07e9620-3316-4404-a36e-af0b940d6ef5",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[3635, 97, 304, 4, 40, "SubitemNumbered",ExpressionUUID->"2885da43-7610-4f7a-97c1-26ae42b8f68a"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

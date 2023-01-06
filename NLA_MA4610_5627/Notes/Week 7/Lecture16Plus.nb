@@ -1,0 +1,789 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27192,        781]
+NotebookOptionsPosition[     24197,        725]
+NotebookOutlinePosition[     24842,        747]
+CellTagsIndexPosition[     24799,        744]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+16 ++ Review of 
+Condition #, Theorem 15.1
+and Householder QR Stability \
+\>", "Title",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQ7cTkxHByxRvHQ7cXMYLoWRxPXD4A6eIJHB4guvef
+EddHIH2sYh4PiH7lc0brE5Be4fgITPssWzT/M5Ce9HrdAhDNV66gJLPyjaP5
+549gulXCcrMskC44dgJMT/7i+bgISG9wPfYERKvemfNyFpBO4VzyCkQ7RWw8
+MBtIN1T/PgiiNx6u1FkDpDkm2uuB6DMMbUUHgbRKqHgJiO6bsvsAiK65ewJM
+b5pate4akD5/etZ6EM1x5uJ+EB3kWXwARG95OeEhiD786fkTEJ2Ss1C0Ytsb
+x5cfpomBaJ2C2y7F2984TrE/4Amii1aVBYHof1ulg0G05I1yxRIgrTTXXB1E
+AwDNvbfA
+  "],ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+
+Cell[TextData[{
+ "Here is our definition of relative condition number for the instance ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"f", "(", "x", ")"}], TraditionalForm]],ExpressionUUID->
+  "e5b0fbea-4bda-4a3e-9201-95439f00ad1b"],
+ " for the abstract function  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", ":", "X"}], "\[Rule]", "Y"}], TraditionalForm]],
+  ExpressionUUID->"037e5fb2-db05-4d59-92fe-ba91e328d9e9"],
+ " with ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"Df", "(", "x", ")"}], "=", 
+    RowBox[{"J", "(", "x", ")"}]}], TraditionalForm]],ExpressionUUID->
+  "7c95256a-3fbb-443f-8a76-03631ee98f95"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.853762752815711*^9, 3.853762800035963*^9}, 
+   3.854277150037055*^9, {3.854277332479871*^9, 3.8542774534745283`*^9}, {
+   3.854277588299346*^9, 
+   3.854277588552558*^9}},ExpressionUUID->"0d0f9f66-afd3-496d-a7e7-\
+09a5a8b5a5f2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Relative Condition Number\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Kappa]", "(", "x", ")"}], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["lim", 
+       RowBox[{"\[Delta]", "->", "0"}]], 
+      RowBox[{
+       SubscriptBox["sup", 
+        RowBox[{"||", "\[Delta]x", "||", 
+         RowBox[{"<", "\[Delta]"}]}]], 
+       FractionBox[
+        RowBox[{"||", 
+         RowBox[{
+          RowBox[{"f", "(", 
+           RowBox[{"x", "+", "\[Delta]x"}], ")"}], "-", 
+          RowBox[{"f", "(", "x", ")"}]}], "||", 
+         RowBox[{"/", 
+          RowBox[{"||", 
+           RowBox[{"f", "(", "x", ")"}], "||"}]}]}], 
+        RowBox[{"||", "\[Delta]x", "||", 
+         RowBox[{"/", 
+          RowBox[{"||", "x", "||"}]}]}]]}]}], "=", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["sup", "\[Delta]x"], 
+       FractionBox[
+        RowBox[{"||", "\[Delta]f", "||", 
+         RowBox[{"/", 
+          RowBox[{"||", 
+           RowBox[{"f", "(", "x", ")"}], "||"}]}]}], 
+        RowBox[{"||", "\[Delta]x", "||", 
+         RowBox[{"/", 
+          RowBox[{"||", "x", "||"}]}]}]]}], "=", 
+      FractionBox[
+       RowBox[{"||", 
+        RowBox[{"J", "(", "x", ")"}], 
+        SubscriptBox["||", "ind"]}], 
+       RowBox[{"||", 
+        RowBox[{"f", "(", "x", ")"}], "||", 
+        RowBox[{"/", 
+         RowBox[{"||", "x", "||"}]}]}]]}]}]}], TraditionalForm]],
+  ExpressionUUID->"c06be639-92a5-46da-8fe9-d0ae78189c04"]
+}], "Item",
+ CellChangeTimes->{{3.852477408901309*^9, 3.8524774954342546`*^9}, {
+  3.852477529925613*^9, 3.852477640723259*^9}, {3.852477751844701*^9, 
+  3.8524777847941027`*^9}, {3.85247835734241*^9, 3.852478431065967*^9}, {
+  3.8532507934031105`*^9, 3.853250796256194*^9}, {3.854277360594935*^9, 
+  3.8542773612210417`*^9}},
+ Background->RGBColor[
+  1, 0.9, 0.8],ExpressionUUID->"d80a8323-3668-4bae-9504-c2ff00a21897"],
+
+Cell[TextData[{
+ "A problem is well conditioned if ",
+ Cell[BoxData[
+  FormBox["k", TraditionalForm]],ExpressionUUID->
+  "9696e904-e19c-4048-a2c8-324563aea1af"],
+ " is small (say less than ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", "2"], TraditionalForm]],ExpressionUUID->
+  "bd9518fb-2262-495c-8cf7-19369221f45e"],
+ ") and badly conditioned if k is big (say bigger than ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", "6"], TraditionalForm]],ExpressionUUID->
+  "22749813-b887-4cb9-83b5-6456bb24ea08"],
+ ")."
+}], "Subitem",
+ CellChangeTimes->{{3.852478458583613*^9, 3.852478622047348*^9}, {
+  3.854277477090639*^9, 
+  3.854277486489759*^9}},ExpressionUUID->"5e345f89-3da1-4fbb-948c-\
+69d47821e63f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"k", "(", "x", ")"}], " "}], TraditionalForm]],ExpressionUUID->
+  "4bc89e81-a2bc-451c-9739-ba5313e175cb"],
+ " measures the relative sensitivity of the problem ",
+ Cell[BoxData[
+  FormBox["f", TraditionalForm]],ExpressionUUID->
+  "084e53d8-49c0-4822-ad81-adf015ee4212"],
+ " at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"x", "\[Element]", "X"}], TraditionalForm]],ExpressionUUID->
+  "a6f1bbce-2a9b-449b-9d2d-1d262782e0ff"]
+}], "Subitem",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.852478458583613*^9, 3.852478622047348*^9}, {
+  3.854277477090639*^9, 
+  3.85427752699891*^9}},ExpressionUUID->"a0061189-2cb8-4691-a3ed-\
+217544af1ce0"],
+
+Cell[TextData[{
+ "Here is our definition of Backwards Stable for an algorithm ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     OverscriptBox["f", "~"], ":", "X"}], "\[Rule]", "Y"}], TraditionalForm]],
+  ExpressionUUID->"cea1646c-faf1-446d-8373-6d370c7b5b6e"]
+}], "Text",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.854277561162992*^9, 
+  3.854277613742655*^9}},ExpressionUUID->"9caefb48-5ef2-48ff-8e2f-\
+de87f787d912"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["f", "~"], TraditionalForm]],ExpressionUUID->
+  "65867b50-2174-4c03-9dcb-30ec6c2b1cdc"],
+ " is ",
+ StyleBox["backwards stable",
+  FontColor->RGBColor[1, 0, 0]],
+ " if  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     OverscriptBox["f", "~"], "(", "x", ")"}], "=", 
+    RowBox[{"f", "(", 
+     OverscriptBox["x", "~"], ")"}], " "}], TraditionalForm]],ExpressionUUID->
+  "18f4b3b0-5b41-4a6c-8e5c-dd9327eb5466"],
+ "for some ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["x", "~"], TraditionalForm]],ExpressionUUID->
+  "3cc1aafc-da04-4de8-95dd-7efea6ad89d9"],
+ " satisfying",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"||", " ", 
+      RowBox[{"x", " ", "-", " ", 
+       OverscriptBox["x", "~"]}], " ", "||"}], 
+     RowBox[{"||", "x", "||"}]], "=", 
+    RowBox[{"O", "(", 
+     SubscriptBox["\[Epsilon]", "machine"], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"c7db3865-4578-46fe-a9b6-36fe9047d63e"],
+ " \n\"Backwards stable algorithm give the right answer to nearly the right \
+question!\""
+}], "Item",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.853753458236114*^9, 3.853753546045582*^9}, {
+  3.853753604770556*^9, 3.853753675463708*^9}, {3.853754053631774*^9, 
+  3.853754153596633*^9}, {3.853754183782856*^9, 3.853754190547701*^9}, {
+  3.853754739484456*^9, 3.8537547642170353`*^9}, {3.85375538133613*^9, 
+  3.853755435759288*^9}, {3.853755488476203*^9, 3.853755608278084*^9}, {
+  3.853755961801465*^9, 3.853756093252222*^9}, {3.853756144806319*^9, 
+  3.853756144810258*^9}, {3.853756218242078*^9, 3.853756220202024*^9}, {
+  3.853756311375993*^9, 3.853756331811005*^9}, {3.853756368270885*^9, 
+  3.853756434112232*^9}, {3.853756559662434*^9, 3.853756612536446*^9}, {
+  3.853757304912067*^9, 3.853757337711714*^9}, {3.853762823891899*^9, 
+  3.853762830565337*^9}},
+ Background->RGBColor[
+  1, 0.9, 0.8],ExpressionUUID->"6bbf4392-12c3-4184-954a-cca7d6bac3d3"],
+
+Cell["\<\
+Here is our basic theorem that says backwards stable algorithms are \
+relatively good. \
+\>", "Text",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.},
+ CellChangeTimes->{{3.854277561162992*^9, 
+  3.854277684171123*^9}},ExpressionUUID->"39fbac39-fb30-407e-8167-\
+5be6e145c5aa"],
+
+Cell[TextData[{
+ "Theorem 15.1 if ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["f", "~"], TraditionalForm]],ExpressionUUID->
+  "117ea006-6092-44e2-8bae-86b899d5e11a"],
+ " is a ",
+ StyleBox["backwards stable algorithm ",
+  FontColor->RGBColor[1, 0, 0]],
+ "then ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"||", " ", 
+      RowBox[{
+       RowBox[{
+        OverscriptBox["f", "~"], "(", "x", ")"}], " ", "-", " ", 
+       RowBox[{"f", "(", "x", ")"}]}], " ", "||"}], 
+     RowBox[{"||", 
+      RowBox[{"f", "(", "x", ")"}], "||"}]], "=", 
+    RowBox[{"O", "(", 
+     RowBox[{
+      RowBox[{"\[Kappa]", "(", "x", ")"}], 
+      SubscriptBox["\[Epsilon]", "machine"]}], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"77e6acd3-658d-44aa-ab47-e9621af31e15"]
+}], "Item",
+ CellChangeTimes->{{3.853753458236114*^9, 3.853753546045582*^9}, {
+  3.853753604770556*^9, 3.853753675463708*^9}, {3.853754053631774*^9, 
+  3.853754153596633*^9}, {3.853754183782856*^9, 3.853754190547701*^9}, {
+  3.853754739484456*^9, 3.8537547642170353`*^9}, {3.85375538133613*^9, 
+  3.853755435759288*^9}, {3.853755488476203*^9, 3.853755608278084*^9}, {
+  3.853755961801465*^9, 3.853756093252222*^9}, {3.853756144806319*^9, 
+  3.853756144810258*^9}, {3.853756218242078*^9, 3.853756220202024*^9}, {
+  3.853756311375993*^9, 3.853756331811005*^9}, {3.853756368270885*^9, 
+  3.853756434112232*^9}, {3.853756559662434*^9, 3.853756612536446*^9}, {
+  3.853757304912067*^9, 3.853757337711714*^9}, {3.853762823891899*^9, 
+  3.853762830565337*^9}, {3.8541950599261503`*^9, 3.8541951012407255`*^9}, {
+  3.854195136511275*^9, 3.8541951935218143`*^9}},
+ Background->RGBColor[
+  1, 0.9, 0.8],ExpressionUUID->"6590dcca-2ef6-43bb-8d14-6ea8a6824ed3"]
+}, Open  ]],
+
+Cell["\<\
+Theorem 15.1 is basically what you get when you combine the two definitions.  \
+I am going to write it all down so that it is clear how it all fits together. \
+\>", "Text",
+ CellChangeTimes->{{3.854277756378339*^9, 3.854277870274675*^9}, {
+  3.854277958645026*^9, 
+  3.854277973077486*^9}},ExpressionUUID->"c27ebef3-0a32-4b54-a09a-\
+ea224d827646"],
+
+Cell[CellGroupData[{
+
+Cell["Proof of 15.1", "Item",
+ CellChangeTimes->{{3.8542779856848717`*^9, 
+  3.854278013618143*^9}},ExpressionUUID->"f5454197-fd1e-49c9-b858-\
+2882f956f7a4"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Since ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["f", "~"], TraditionalForm]],ExpressionUUID->
+  "976fd10b-4e83-4f46-8b4c-e825896b4f25"],
+ " is backwards stable there is an ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["x", "~"], TraditionalForm]],ExpressionUUID->
+  "97e196b0-4330-44c2-8539-10cdb3e93ee9"],
+ " relatively near ",
+ Cell[BoxData[
+  FormBox["x", TraditionalForm]],ExpressionUUID->
+  "453f4ee0-f153-4b26-b04f-0b2ab4c1c69e"],
+ " with ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    FormBox[
+     RowBox[{
+      RowBox[{
+       OverscriptBox["f", "~"], "(", "x", ")"}], "=", 
+      RowBox[{"f", "(", 
+       OverscriptBox["x", "~"], ")"}], " "}],
+     TraditionalForm]}], TraditionalForm]],ExpressionUUID->
+  "a2668a02-687c-42a0-8af1-95b113171e1b"],
+ ". In fact, we have  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"||", 
+     RowBox[{"x", "-", 
+      OverscriptBox["x", "~"]}], "||"}], "=", 
+    RowBox[{"||", "x", "||", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"O", "(", "\[Epsilon]", ")"}]}], ")"}]}]}], TraditionalForm]],
+  ExpressionUUID->"11b6fc39-fdcd-44db-ad95-6659549ab535"],
+ ".  So ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"||", " ", 
+     RowBox[{
+      RowBox[{
+       OverscriptBox["f", "~"], "(", "x", ")"}], " ", "-", " ", 
+      RowBox[{"f", "(", "x", ")"}]}], " ", "||"}], "=", 
+    RowBox[{"||", " ", 
+     RowBox[{
+      RowBox[{"f", "(", 
+       OverscriptBox["x", "~"], ")"}], " ", "-", " ", 
+      RowBox[{"f", "(", "x", ")"}]}], " ", "||"}]}], TraditionalForm]],
+  ExpressionUUID->"7cce906e-ee9f-4f7b-b8b0-d681f57c23e4"],
+ " for this ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["x", "~"], TraditionalForm]],ExpressionUUID->
+  "d17cea0f-af0d-4c1a-8f34-0dc93978a37b"],
+ ". "
+}], "Subitem",
+ CellChangeTimes->{{3.8542779856848717`*^9, 3.854278208701336*^9}, {
+  3.854278313475594*^9, 
+  3.854278330865202*^9}},ExpressionUUID->"875c6805-4e56-4449-9f58-\
+c0a6cc974d47"],
+
+Cell[TextData[{
+ "Writing ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    OverscriptBox["x", "~"], "=", 
+    RowBox[{"x", "+", "\[Delta]x"}]}], TraditionalForm]],ExpressionUUID->
+  "8a10c87a-1c21-4550-a2dc-173158cce0b3"],
+ " in the definition of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"k", "(", "x", ")"}], TraditionalForm]],ExpressionUUID->
+  "a224907c-b243-444d-8032-cd585a4de8be"],
+ " says ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"k", "(", "x", ")"}], "=", 
+    RowBox[{
+     SubscriptBox["lim", 
+      RowBox[{"\[Delta]", "->", "0"}]], 
+     RowBox[{
+      SubscriptBox["sup", 
+       RowBox[{"||", 
+        RowBox[{"x", "-", 
+         OverscriptBox["x", "~"]}], "||", 
+        RowBox[{"<", "\[Delta]"}]}]], 
+      FractionBox[
+       RowBox[{"||", 
+        RowBox[{
+         RowBox[{"f", "(", 
+          OverscriptBox["x", "~"], ")"}], "-", 
+         RowBox[{"f", "(", "x", ")"}]}], "||", 
+        RowBox[{"/", 
+         RowBox[{"||", 
+          RowBox[{"f", "(", "x", ")"}], "||"}]}]}], 
+       RowBox[{"||", 
+        RowBox[{"x", "-", 
+         OverscriptBox["x", "~"]}], "||", 
+        RowBox[{"/", 
+         RowBox[{"||", "x", "||"}]}]}]]}]}]}], TraditionalForm]],
+  ExpressionUUID->"6c360393-9072-4fff-908f-2c97c5644b0e"]
+}], "Subitem",
+ CellChangeTimes->{{3.8542779856848717`*^9, 3.854278208701336*^9}, {
+  3.854278313475594*^9, 3.854278330865202*^9}, {3.854278365593264*^9, 
+  3.85427839167111*^9}, {3.854278432174754*^9, 
+  3.8542785285903997`*^9}},ExpressionUUID->"b1f9dee5-1e46-4046-a912-\
+2d3743ca8599"],
+
+Cell[TextData[{
+ "For ",
+ Cell[BoxData[
+  FormBox["\[Epsilon]", TraditionalForm]],ExpressionUUID->
+  "11fdff84-fe98-4644-8c24-2c776f04f825"],
+ " sufficiently small (in the backwards stability part) we have that  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"||", " ", 
+     RowBox[{
+      RowBox[{
+       OverscriptBox["f", "~"], "(", "x", ")"}], " ", "-", " ", 
+      RowBox[{"f", "(", "x", ")"}]}], " ", "||"}], "=", 
+    RowBox[{
+     RowBox[{"||", " ", 
+      RowBox[{
+       RowBox[{"f", "(", 
+        OverscriptBox["x", "~"], ")"}], " ", "-", " ", 
+       RowBox[{"f", "(", "x", ")"}]}], " ", "||", 
+      RowBox[{"\[LessEqual]", 
+       RowBox[{"\[Kappa]", "(", "x", ")"}]}], "||", 
+      RowBox[{"f", "(", "x", ")"}], "||", 
+      FractionBox[
+       RowBox[{"||", 
+        RowBox[{"x", "-", 
+         OverscriptBox["x", "~"]}], "||"}], 
+       RowBox[{"||", "x", "||"}]]}], "=", 
+     RowBox[{
+      RowBox[{"\[Kappa]", "(", "x", ")"}], "||", 
+      RowBox[{"f", "(", "x", ")"}], "||", 
+      RowBox[{"O", "(", "\[Epsilon]", ")"}]}]}]}], TraditionalForm]],
+  ExpressionUUID->"bff14309-7f77-4a78-8072-8cdb1d6fd57d"]
+}], "Subsubitem",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.},
+ CellChangeTimes->{{3.8542779856848717`*^9, 3.854278208701336*^9}, {
+  3.854278313475594*^9, 3.854278330865202*^9}, {3.854278365593264*^9, 
+  3.85427839167111*^9}, {3.854278432174754*^9, 3.854278580619681*^9}, {
+  3.854278702655171*^9, 3.854278714198639*^9}, {3.854278782900732*^9, 
+  3.854278816329603*^9}, {3.8542788467611103`*^9, 3.854278847398203*^9}, {
+  3.8544594874075336`*^9, 
+  3.85445949436563*^9}},ExpressionUUID->"425c37f8-a2e9-41a7-8433-\
+3c587cc70d8a"],
+
+Cell[TextData[{
+ "Divide by ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"||", 
+    RowBox[{"f", "(", "x", ")"}], "||"}], TraditionalForm]],ExpressionUUID->
+  "5c0289ae-4551-4719-8d76-9411c1391746"],
+ " to get the claim of Theorem 15.1"
+}], "Subitem",
+ CellChangeTimes->{{3.8542779856848717`*^9, 3.854278208701336*^9}, {
+  3.854278313475594*^9, 3.854278330865202*^9}, {3.854278365593264*^9, 
+  3.85427839167111*^9}, {3.854278432174754*^9, 3.8542785285903997`*^9}, {
+  3.8542787433513803`*^9, 3.854278756185444*^9}, {3.854278853100095*^9, 
+  3.854278906450697*^9}},ExpressionUUID->"1d14cdb5-c47f-4fa8-890c-\
+223e6fb1d5af"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "QR Summary: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "=", 
+    RowBox[{"Q", ".", "R"}]}], TraditionalForm]],ExpressionUUID->
+  "93093757-3a4b-4a01-82e1-c2e6811a605b"],
+ " with ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"m", "\[Times]", "n"}]]}], TraditionalForm]],ExpressionUUID->
+  "1bc22dd4-eff4-41ea-a2c7-de487b91d585"],
+ " where ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"m", "\[GreaterEqual]", "n"}], TraditionalForm]],ExpressionUUID->
+  "b2cd5df1-bb2e-41d0-aa6e-20a16ab02914"],
+ "."
+}], "Section",
+ CellChangeTimes->{{3.847097898203796*^9, 3.847097949004158*^9}, {
+  3.84709811825355*^9, 3.847098131845387*^9}, {3.847100057948483*^9, 
+  3.847100070542018*^9}, {3.8471018011042843`*^9, 3.847101805095915*^9}, {
+  3.847140821387518*^9, 3.847140823364403*^9}, {3.847140887506627*^9, 
+  3.8471408963475122`*^9}, {3.853762863603322*^9, 3.853762869130288*^9}, {
+  3.8537631600688467`*^9, 3.85376316074162*^9}, {3.853763308156144*^9, 
+  3.853763308588944*^9}, {3.85427899872155*^9, 3.854279001735648*^9}, {
+  3.854279412294804*^9, 
+  3.854279454029851*^9}},ExpressionUUID->"b5156879-1f25-42af-bedd-\
+2c10c402a757"],
+
+Cell[TextData[{
+ "Since the individual Householder reflectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["H", "i"], "=", 
+    RowBox[{"I", "-", 
+     RowBox[{"2", " ", 
+      RowBox[{
+       SubscriptBox["v", "i"], "\[CircleTimes]", 
+       SubscriptBox["v", "i"]}]}]}]}], TraditionalForm]],ExpressionUUID->
+  "6784e440-4718-4a84-bd54-20e9d8909580"],
+ " are exactly orthogonal the product ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["Q", "fat"], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["H", "1"], ".", 
+      SubscriptBox["H", "2"]}], 
+     RowBox[{
+      SubscriptBox["\[Ellipsis]H", 
+       RowBox[{"n", "-", "1"}]], ".", 
+      SubscriptBox["H", "n"], " "}]}]}], TraditionalForm]],ExpressionUUID->
+  "20df2560-0ea1-42b4-9cb1-b252e68789af"],
+ "is orthogonal.  The condition number of an orthogonal matrix is 1: \
+orthogonal matrices do not harm!   "
+}], "Text",
+ CellChangeTimes->{{3.854195221925989*^9, 3.8541953836450357`*^9}, {
+  3.854279007317185*^9, 3.854279189995974*^9}, {3.854279290233677*^9, 
+  3.8542792952603073`*^9}},ExpressionUUID->"6f3a8e7c-3da4-4092-a845-\
+d80f16e07322"],
+
+Cell[TextData[{
+ "Of course, we can not use the the exact Householder vectors ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "i"], TraditionalForm]],ExpressionUUID->
+  "72877600-2da0-4cc6-b8f0-f713cc316263"],
+ " (or if we needed to build the exact ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["H", "i"], TraditionalForm]],ExpressionUUID->
+  "b94b3702-1793-4525-9784-67796504e85a"],
+ ") but each approximate ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["H", "~"], "i"], TraditionalForm]],ExpressionUUID->
+  "1097bc33-faa0-4612-b2bf-f284c6eb69c0"],
+ " satisfies ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Kappa]", "(", 
+     SubscriptBox[
+      OverscriptBox["H", "~"], "i"], ")"}], "=", 
+    RowBox[{"1", "+", 
+     RowBox[{"O", "(", 
+      SubscriptBox["\[Epsilon]", "m"], ")"}]}]}], TraditionalForm]],
+  ExpressionUUID->"a625b661-a621-492d-af7e-c5dd0093ba40"],
+ " and so the product ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    OverscriptBox["Q", "~"], "fat"], TraditionalForm]],ExpressionUUID->
+  "ebfd6486-3486-4eff-99e8-cf4427f95e9f"],
+ " if we formed it would satisfy ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Kappa]", "(", 
+     SubscriptBox[
+      OverscriptBox["Q", "~"], "fat"], ")"}], "=", 
+    RowBox[{"1", "+", 
+     RowBox[{"O", "(", 
+      SubscriptBox["\[Epsilon]", "m"], ")"}]}]}], TraditionalForm]],
+  ExpressionUUID->"49a273b9-1689-41f2-8798-b76d4636641e"],
+ ".  The almost orthogonal ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["Q", "fat"], TraditionalForm]],ExpressionUUID->
+  "adc2c543-c4fb-46cb-9334-407d5050a0f6"],
+ " does harm on the order of machine precision!  "
+}], "Text",
+ CellChangeTimes->{{3.854279194581566*^9, 3.85427940802281*^9}, {
+  3.8542794713043423`*^9, 3.854279604571035*^9}, {3.854279707311339*^9, 
+  3.854279718296426*^9}},ExpressionUUID->"71d86312-4880-4af3-a00c-\
+f95cb5724ec7"],
+
+Cell[TextData[{
+ "Since ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["Q", "fat"], ".", "A"}], "=", 
+    RowBox[{"(", GridBox[{
+       {"R"},
+       {"0"}
+      }], ")"}]}], TraditionalForm]],ExpressionUUID->
+  "8b97761e-8138-4e90-93c7-c30e65a64e34"],
+ " the algorithms output ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["Q", "~"], "fat"], ".", "A"}], "=", 
+    RowBox[{"(", GridBox[{
+       {
+        OverscriptBox["R", "~"]},
+       {
+        OverscriptBox["0", "~"]}
+      }], ")"}], " "}], TraditionalForm]],ExpressionUUID->
+  "c7e770b7-3ab0-4675-94e3-8450df2c1f6d"],
+ "is formed relatively accurately!  Writing  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["Q", "fat"], "=", 
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        SubscriptBox["Q", "thin"], "|", 
+        SubscriptBox["Q", "rest"]}
+      }], "\[NoBreak]", ")"}]}], TraditionalForm]],ExpressionUUID->
+  "5dc4739f-0f40-41bc-8dd2-c254ba2aa738"],
+ " shows that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["Q", "~"], "thin"], ".", "A"}], "=", 
+    OverscriptBox["R", "~"]}], TraditionalForm]],ExpressionUUID->
+  "92cf5b85-8111-49fa-b8b9-5d50021f2842"],
+ "  and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["Q", "~"], "rest"], ".", "A"}], "=", 
+    OverscriptBox["0", "~"]}], TraditionalForm]],ExpressionUUID->
+  "e26bf337-d5c4-4185-8547-1210d961bd32"],
+ " are both formed relatively accurately. "
+}], "Text",
+ InitializationCell->True,
+ CellChangeTimes->{{3.8542796133253527`*^9, 3.85427969765289*^9}, {
+  3.854279730013816*^9, 
+  3.854280114664934*^9}},ExpressionUUID->"9f04ff4e-6af6-4055-b247-\
+8a2f6fc76771"],
+
+Cell[TextData[{
+ "This is visible in the tiny entries in the lower triangle of ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["R", "~"], TraditionalForm]],ExpressionUUID->
+  "05160b94-61e8-42e1-8d8a-98665f4071aa"],
+ ": discarding them to give the upper triangular output does not harm. "
+}], "Text",
+ CellChangeTimes->{{3.8542801237804527`*^9, 
+  3.85428023188728*^9}},ExpressionUUID->"5053339b-a2c4-472b-9157-\
+333a1a3016fe"],
+
+Cell[TextData[{
+ "Summary: Because Householder QR uses the orthogonal matrices it produces \
+output ",
+ Cell[BoxData[
+  FormBox["R", TraditionalForm]],ExpressionUUID->
+  "6af7705f-784e-4ff2-9656-e6672fb790fb"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"q", "=", 
+    SubscriptBox["Q", "thin"], " "}], TraditionalForm]],ExpressionUUID->
+  "a4336c0b-dff5-40d2-9281-5f894ab26371"],
+ "with an essentially orthogonal column space basis ",
+ Cell[BoxData[
+  FormBox["Q", TraditionalForm]],ExpressionUUID->
+  "22330470-e1a7-495e-a487-f93358781592"],
+ " i.e.",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"||", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Q", "\[Transpose]"}], ".", "Q"}], "-", 
+      SubscriptBox["I", "n"]}], "||"}], "=", 
+    RowBox[{"O", "(", 
+     SubscriptBox["\[Epsilon]", "m"], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"f1a7c637-1977-4ae8-9de7-e81f00ca75ec"],
+ " and small residuals ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"||", 
+     RowBox[{"A", "-", 
+      RowBox[{"Q", ".", "R"}]}], "||"}], "=", 
+    RowBox[{"O", "(", 
+     SubscriptBox["\[Epsilon]", "m"], ")"}]}], TraditionalForm]],
+  ExpressionUUID->"4dc45130-77b8-421e-9cbb-1129506903c7"],
+ ".  It is a backwards stable algorithm.   "
+}], "Text",
+ CellChangeTimes->{{3.854280246214656*^9, 3.854280506240108*^9}, {
+  3.854280553230739*^9, 
+  3.85428057792087*^9}},ExpressionUUID->"7d311d23-0bfe-4da6-b6cc-\
+6e9cc494b91b"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1152., 585.6},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+TaggingRules-><|
+ "PresenterSettings" -> <|"Dialogs" -> {}|>, "TryRealOnly" -> False|>,
+Magnification->1.25,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Aqua.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"b647f475-eaea-44de-9227-d541b13eac2c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 570, 13, 315, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+Cell[1153, 37, 895, 25, 41, "Text",ExpressionUUID->"0d0f9f66-afd3-496d-a7e7-09a5a8b5a5f2"],
+Cell[CellGroupData[{
+Cell[2073, 66, 1872, 53, 95, "Item",ExpressionUUID->"d80a8323-3668-4bae-9504-c2ff00a21897"],
+Cell[3948, 121, 713, 20, 34, "Subitem",ExpressionUUID->"5e345f89-3da1-4fbb-948c-69d47821e63f"],
+Cell[4664, 143, 734, 20, 34, "Subitem",ExpressionUUID->"a0061189-2cb8-4691-a3ed-217544af1ce0",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[5401, 165, 467, 12, 41, "Text",ExpressionUUID->"9caefb48-5ef2-48ff-8e2f-de87f787d912",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[5871, 179, 1995, 50, 94, "Item",ExpressionUUID->"6bbf4392-12c3-4184-954a-cca7d6bac3d3",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[7869, 231, 298, 7, 41, "Text",ExpressionUUID->"39fbac39-fb30-407e-8167-5be6e145c5aa",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15000.}],
+Cell[8170, 240, 1726, 40, 72, "Item",ExpressionUUID->"6590dcca-2ef6-43bb-8d14-6ea8a6824ed3"]
+}, Open  ]],
+Cell[9911, 283, 357, 7, 69, "Text",ExpressionUUID->"c27ebef3-0a32-4b54-a09a-ea224d827646"],
+Cell[CellGroupData[{
+Cell[10293, 294, 157, 3, 39, "Item",ExpressionUUID->"f5454197-fd1e-49c9-b858-2882f956f7a4"],
+Cell[CellGroupData[{
+Cell[10475, 301, 1965, 64, 59, "Subitem",ExpressionUUID->"875c6805-4e56-4449-9f58-c0a6cc974d47"],
+Cell[12443, 367, 1530, 47, 43, "Subitem",ExpressionUUID->"b1f9dee5-1e46-4046-a912-2d3743ca8599"],
+Cell[13976, 416, 1677, 42, 63, "Subsubitem",ExpressionUUID->"425c37f8-a2e9-41a7-8433-3c587cc70d8a",
+ CellGroupingRules->{"GroupTogetherNestedGrouping", 15100.}],
+Cell[15656, 460, 616, 14, 34, "Subitem",ExpressionUUID->"1d14cdb5-c47f-4fa8-890c-223e6fb1d5af"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16321, 480, 1210, 30, 80, "Section",ExpressionUUID->"b5156879-1f25-42af-bedd-2c10c402a757"],
+Cell[17534, 512, 1129, 32, 69, "Text",ExpressionUUID->"6f3a8e7c-3da4-4092-a845-d80f16e07322"],
+Cell[18666, 546, 1877, 55, 97, "Text",ExpressionUUID->"71d86312-4880-4af3-a00c-f95cb5724ec7"],
+Cell[20546, 603, 1766, 61, 94, "Text",ExpressionUUID->"9f04ff4e-6af6-4055-b247-8a2f6fc76771",
+ InitializationCell->True],
+Cell[22315, 666, 425, 10, 41, "Text",ExpressionUUID->"5053339b-a2c4-472b-9157-333a1a3016fe"],
+Cell[22743, 678, 1426, 43, 97, "Text",ExpressionUUID->"7d311d23-0bfe-4da6-b6cc-6e9cc494b91b"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
