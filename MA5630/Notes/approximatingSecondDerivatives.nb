@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     16991,        485]
-NotebookOptionsPosition[     15461,        451]
-NotebookOutlinePosition[     16093,        472]
-CellTagsIndexPosition[     16050,        469]
+NotebookDataLength[     22958,        664]
+NotebookOptionsPosition[     21013,        624]
+NotebookOutlinePosition[     21645,        645]
+CellTagsIndexPosition[     21602,        642]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -445,7 +445,180 @@ is the only symmetric rank one update that satisfies the secant equation."
  CellChangeTimes->{{3.8836591801128016`*^9, 3.8836591915652676`*^9}, {
   3.8836592538788877`*^9, 
   3.883659512158101*^9}},ExpressionUUID->"93d4d00f-ed55-4d8f-b403-\
-f6f08a3b4672"]
+f6f08a3b4672"],
+
+Cell[CellGroupData[{
+
+Cell["Quasi-Newton Notation", "Subsection",
+ CellChangeTimes->{{3.8836567678710546`*^9, 3.8836567732332025`*^9}, {
+  3.8840912313834233`*^9, 
+  3.884091235544654*^9}},ExpressionUUID->"c5fcef98-c49f-466f-a3a3-\
+548aec667ad6"],
+
+Cell[TextData[{
+ "For reasons that are not entirely clear the change in the gradient is \
+commonly called ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["y", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c46bf32f-d699-414c-8838-f122a08da108"],
+ " and the change in position is commonly called ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "7557a6b4-5b60-4681-81ac-500daf9be9f5"],
+ ".  In other words,\n\t",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {
+      SubscriptBox["s", "k"], "=", 
+      SubscriptBox["x", 
+       RowBox[{"k", "+", "1"}]], "-", 
+      SubscriptBox["x", "k"]},
+     {
+      SubscriptBox["y", "k"], "=", 
+      RowBox[{"\[Del]", 
+       RowBox[{"f", "(", 
+        SubscriptBox["x", 
+         RowBox[{"k", "+", "1"}]], ")"}]}], "-", 
+      RowBox[{"\[Del]", 
+       RowBox[{"f", "(", 
+        SubscriptBox["x", "k"], ")"}]}]}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0b7c7f49-cff6-49ba-9c05-83fe4b82f843"],
+ "\nWith this notation we are looking to update a symmetric approximation ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["B", "k"], "\[TildeTilde]", 
+    RowBox[{
+     SuperscriptBox["\[Del]", "2"], 
+     RowBox[{"f", "(", 
+      SubscriptBox["x", "k"], ")"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c8dedcb6-8101-43f5-b650-efc681167694"],
+ " to a symmetric approximation ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["B", 
+     RowBox[{"k", "+", "1"}]], "\[TildeTilde]", 
+    RowBox[{
+     SuperscriptBox["\[Del]", "2"], 
+     RowBox[{"f", "(", 
+      SubscriptBox["x", 
+       RowBox[{"k", "+", "1"}]], ")"}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "68d5cad6-f39d-4d9f-b448-56746f3698a8"],
+ " satisfying the secant equation\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["B", 
+     RowBox[{"k", "+", "1"}]], GridBox[{
+      {
+       SubscriptBox["s", "k"], "=", 
+       SubscriptBox["y", "k"]}
+     }]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "88b08ba0-9b19-41c4-9eb2-e3886252aff2"],
+ "\nThe update needs to be easily implemented.  The two most common are the \
+SR1\n(SR1)\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["B", 
+     RowBox[{"k", "+", "1"}]], "=", 
+    RowBox[{
+     SubscriptBox["B", "k"], "+", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"y", "-", 
+         RowBox[{
+          SubscriptBox["B", "k"], ".", 
+          SubscriptBox["s", "k"]}]}], ")"}], "\[CircleTimes]", 
+       RowBox[{"(", 
+        RowBox[{"y", "-", 
+         RowBox[{
+          SubscriptBox["B", "k"], ".", 
+          SubscriptBox["s", "k"]}]}], ")"}]}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"y", "-", 
+         RowBox[{
+          SubscriptBox["B", "k"], ".", 
+          SubscriptBox["s", "k"]}]}], ")"}], ".", 
+       SubscriptBox["s", "k"]}]]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "926fe6d5-588c-4bcb-a5a4-3b77e00e9ed7"],
+ "\nand the BFGS update\n(BFGS)\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["B", 
+     RowBox[{"k", "+", "1"}]], "=", 
+    RowBox[{
+     SubscriptBox["B", "k"], "-", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SubscriptBox["B", "k"], ".", 
+         SubscriptBox["s", "k"]}], ")"}], "\[CircleTimes]", 
+       RowBox[{"(", 
+        RowBox[{
+         SubscriptBox["B", "k"], ".", 
+         SubscriptBox["s", "k"]}], ")"}]}], 
+      RowBox[{
+       SubscriptBox["s", "k"], ".", 
+       SubscriptBox["B", "k"], ".", 
+       SubscriptBox["s", "k"]}]], "+", 
+     FractionBox[
+      RowBox[{
+       SubscriptBox["y", "k"], "\[CircleTimes]", 
+       SubscriptBox["y", "k"]}], 
+      RowBox[{
+       SubscriptBox["y", "k"], ".", 
+       SubscriptBox["s", "k"]}]]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "666a3dc7-cc1d-436c-b216-77f8c29dd177"],
+ "\nThe SR1 update has the advantage of simplicity and the drawback that it \
+is not known how to maintain positive definiteness.  The BFGS update has the \
+advantage that it is straightforward to ensure that the BFGS update ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["B", 
+    RowBox[{"k", "+", "1"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2d5752f4-f6e5-4ae8-9512-efe60072de46"],
+ " is positive definite and that the update can be derived from a minimum \
+change principle.  "
+}], "Text",
+ CellChangeTimes->{{3.884091241449952*^9, 
+  3.8840921026493564`*^9}},ExpressionUUID->"f87250e2-2d2e-4460-832e-\
+4fc3aff3524d"],
+
+Cell["\<\
+In practice the B matrix is not constructed instead \
+\[OpenCurlyDoubleQuote]limited memory\[CloseCurlyDoubleQuote] versions are \
+implemented that use only the last few values of the y and s values.  \
+\>", "Text",
+ CellChangeTimes->{{3.884092994086028*^9, 
+  3.8840930878368063`*^9}},ExpressionUUID->"13fcb4a3-d268-47f6-9688-\
+941aed828c81"],
+
+Cell["\<\
+There are block variants that incorporate multiple directions.  This is one \
+of the things that I study.   \
+\>", "Text",
+ CellChangeTimes->{{3.884092994086028*^9, 
+  3.884093164578012*^9}},ExpressionUUID->"c81f2d9a-4b5a-4f61-909d-\
+fce55ce845b4"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
@@ -476,7 +649,7 @@ Cell[580, 22, 472, 7, 184, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e
 Cell[1055, 31, 453, 9, 50, "Text",ExpressionUUID->"ac8f2459-c5b6-46e8-8ae2-62f95df6ae3c"],
 Cell[CellGroupData[{
 Cell[1533, 44, 2501, 74, 161, "Input",ExpressionUUID->"73a1cc63-f95c-44c5-ae6d-b53c773977c5"],
-Cell[4037, 120, 2370, 54, 419, "Output",ExpressionUUID->"899fa668-2106-438b-859a-ecd2f663e4ef"]
+Cell[4037, 120, 2370, 54, 374, "Output",ExpressionUUID->"899fa668-2106-438b-859a-ecd2f663e4ef"]
 }, Open  ]],
 Cell[6422, 177, 573, 11, 217, "Text",ExpressionUUID->"1ce7d716-3f0d-48d4-9afd-79c93ae70c6f"],
 Cell[6998, 190, 490, 9, 117, "Text",ExpressionUUID->"c0bb7ad8-d942-4dff-99e9-02a4fc4c7138"],
@@ -484,7 +657,13 @@ Cell[7491, 201, 383, 8, 83, "Text",ExpressionUUID->"2be9332c-be71-4793-9d49-52ba
 Cell[CellGroupData[{
 Cell[7899, 213, 166, 3, 97, "Section",ExpressionUUID->"c48e23d6-32b3-48a9-977e-a1a301286ace"],
 Cell[8068, 218, 6512, 208, 463, "Text",ExpressionUUID->"ed5fc2b1-365c-487f-9c7e-c0723c48ffe6"],
-Cell[14583, 428, 850, 19, 150, "Text",ExpressionUUID->"93d4d00f-ed55-4d8f-b403-f6f08a3b4672"]
+Cell[14583, 428, 850, 19, 150, "Text",ExpressionUUID->"93d4d00f-ed55-4d8f-b403-f6f08a3b4672"],
+Cell[CellGroupData[{
+Cell[15458, 451, 224, 4, 72, "Subsection",ExpressionUUID->"c5fcef98-c49f-466f-a3a3-548aec667ad6"],
+Cell[15685, 457, 4671, 145, 528, "Text",ExpressionUUID->"f87250e2-2d2e-4460-832e-4fc3aff3524d"],
+Cell[20359, 604, 353, 7, 83, "Text",ExpressionUUID->"13fcb4a3-d268-47f6-9688-941aed828c81"],
+Cell[20715, 613, 258, 6, 50, "Text",ExpressionUUID->"c81f2d9a-4b5a-4f61-909d-fce55ce845b4"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
