@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3263,         77]
-NotebookOptionsPosition[      2570,         56]
-NotebookOutlinePosition[      3176,         76]
-CellTagsIndexPosition[      3133,         73]
+NotebookDataLength[      6027,        124]
+NotebookOptionsPosition[      5099,         99]
+NotebookOutlinePosition[      5705,        119]
+CellTagsIndexPosition[      5662,        116]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,11 +32,12 @@ Cell["LHW 10", "Title",
    3.8527273881602635`*^9},ExpressionUUID->"bb443c9e-1a1c-437e-b10c-\
 400e63a30bb8"],
 
+Cell[CellGroupData[{
+
 Cell["\<\
-Make a Julia notebook testing and timing the built-in qr decomposition on \
-tall skinny matrices. Use the help to build a full orthogonal basis QBig \
-(square) and a small orthogonal basis QSmall (Tall and Skinny).  Explain any \
-differences in memory allocations and timings.  \
+In the programming language of your choice implement algorithm 10.1 as a \
+function called MyQR.  The input should be a Tall Skinny matrix A.  The \
+output should be two matrices V and R the same size as A. \
 \>", "ItemNumbered",
  CellChangeTimes->{{3.846588481992638*^9, 3.8465885542280874`*^9}, {
    3.8466688770034857`*^9, 3.84666896561064*^9}, {3.847871568228001*^9, 
@@ -49,9 +50,51 @@ differences in memory allocations and timings.  \
    3.8478743584998884`*^9}, 3.847877792443353*^9, {3.8478781375498905`*^9, 
    3.8478781391540275`*^9}, {3.8478782739855347`*^9, 3.847878337069253*^9}, {
    3.847878947292974*^9, 3.847879031520532*^9}, {3.8478791348818083`*^9, 
-   3.8478792211616306`*^9}, {3.852727334521274*^9, 
-   3.8527273749457674`*^9}},ExpressionUUID->"81b47a30-cbf5-44a1-b035-\
-840c4d1878c2"]
+   3.8478792211616306`*^9}, {3.852727334521274*^9, 3.8527273749457674`*^9}, {
+   3.8841897039514823`*^9, 3.8841899362697315`*^9}, {3.8841899866726227`*^9, 
+   3.8841899868977323`*^9}, {3.884190033726841*^9, 
+   3.8841900367303047`*^9}},ExpressionUUID->"81b47a30-cbf5-44a1-b035-\
+840c4d1878c2"],
+
+Cell["\<\
+In the programming language of your choice implement algorithms 10.2 and 10.3 \
+as function called MyQStarb and MyQx. The input should be the V from your \
+algorithm 10.1 and a vector b for 10.2 along and a vector x for 10.3.  The \
+output in both cases should be the appropriate product.  \
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.846588481992638*^9, 3.8465885542280874`*^9}, {
+   3.8466688770034857`*^9, 3.84666896561064*^9}, {3.847871568228001*^9, 
+   3.847871867330258*^9}, {3.847871901501596*^9, 3.8478719358518867`*^9}, {
+   3.847872281120629*^9, 3.847872304375951*^9}, {3.8478727685912194`*^9, 
+   3.847872772610658*^9}, {3.8478728501615777`*^9, 3.847872992544753*^9}, {
+   3.8478731433902135`*^9, 3.847873223660819*^9}, {3.847873308300146*^9, 
+   3.8478733864065113`*^9}, {3.847873579767501*^9, 3.8478735941796336`*^9}, {
+   3.847874179691635*^9, 3.847874248704743*^9}, {3.847874355434306*^9, 
+   3.8478743584998884`*^9}, 3.847877792443353*^9, {3.8478781375498905`*^9, 
+   3.8478781391540275`*^9}, {3.8478782739855347`*^9, 3.847878337069253*^9}, {
+   3.847878947292974*^9, 3.847879031520532*^9}, {3.8478791348818083`*^9, 
+   3.8478792211616306`*^9}, {3.852727334521274*^9, 3.8527273749457674`*^9}, {
+   3.8841897039514823`*^9, 
+   3.8841901393304214`*^9}},ExpressionUUID->"58235d44-3a37-46ca-95d3-\
+5109cb33f8e7"],
+
+Cell["Test your algorithms appropriately. ", "ItemNumbered",
+ CellChangeTimes->{{3.846588481992638*^9, 3.8465885542280874`*^9}, {
+   3.8466688770034857`*^9, 3.84666896561064*^9}, {3.847871568228001*^9, 
+   3.847871867330258*^9}, {3.847871901501596*^9, 3.8478719358518867`*^9}, {
+   3.847872281120629*^9, 3.847872304375951*^9}, {3.8478727685912194`*^9, 
+   3.847872772610658*^9}, {3.8478728501615777`*^9, 3.847872992544753*^9}, {
+   3.8478731433902135`*^9, 3.847873223660819*^9}, {3.847873308300146*^9, 
+   3.8478733864065113`*^9}, {3.847873579767501*^9, 3.8478735941796336`*^9}, {
+   3.847874179691635*^9, 3.847874248704743*^9}, {3.847874355434306*^9, 
+   3.8478743584998884`*^9}, 3.847877792443353*^9, {3.8478781375498905`*^9, 
+   3.8478781391540275`*^9}, {3.8478782739855347`*^9, 3.847878337069253*^9}, {
+   3.847878947292974*^9, 3.847879031520532*^9}, {3.8478791348818083`*^9, 
+   3.8478792211616306`*^9}, {3.852727334521274*^9, 3.8527273749457674`*^9}, {
+   3.8841897039514823`*^9, 
+   3.884190152896096*^9}},ExpressionUUID->"935f1659-3e62-460d-89f7-\
+54f1bfc56641"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowToolbars->"EditBar",
@@ -59,7 +102,7 @@ WindowSize->{1268, 525},
 WindowMargins->{{1358, Automatic}, {22, Automatic}},
 TaggingRules->Association["PresenterSettings" -> Association["Dialogs" -> {}]],
 Magnification:>1.5 Inherited,
-FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (July 9, 2021)",
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
 StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Aqua.nb", 
   CharacterEncoding -> "UTF-8"],
 ExpressionUUID->"14986717-e3f1-4be9-aff7-18e798ed9e70"
@@ -77,7 +120,11 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 703, 10, 184, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
-Cell[1286, 34, 1268, 19, 117, "ItemNumbered",ExpressionUUID->"81b47a30-cbf5-44a1-b035-840c4d1878c2"]
+Cell[CellGroupData[{
+Cell[1308, 36, 1353, 20, 83, "ItemNumbered",ExpressionUUID->"81b47a30-cbf5-44a1-b035-840c4d1878c2"],
+Cell[2664, 58, 1334, 20, 117, "ItemNumbered",ExpressionUUID->"58235d44-3a37-46ca-95d3-5109cb33f8e7"],
+Cell[4001, 80, 1070, 15, 50, "ItemNumbered",ExpressionUUID->"935f1659-3e62-460d-89f7-54f1bfc56641"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
