@@ -1,0 +1,186 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7763,        178]
+NotebookOptionsPosition[      6771,        153]
+NotebookOutlinePosition[      7404,        174]
+CellTagsIndexPosition[      7361,        171]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["HW Arnoldi", "Title",
+ CellChangeTimes->CompressedData["
+1:eJwdzE0og3EcwPHHQpvk4GAOU2guYw67mIPWsyjLTmtKDtRCdkGbmDFxIKnJ
+vDdCi7UVYzih7IV5xoo1kTZ5W2zzLLYRpeT/+x++fW7fIkWnrJVBEAQHBYoZ
+YsJroUlX0JQGGpnh6g+kepJZC+r/BFkJpEeznA3GpD5eEmkhn7BSs2klhZx6
+s62COb2FxRwrTVakEtiR/MrdAmSXh8JOf0qeVcjtGk8YLAktRY3IFtZaDBQ3
+2B2LyKH+Xydod/eVbSCZBlE56CNGVU4kt57dDU7MHDjAgTsKuzOrtV0jL86N
+WyDT5z8CZRK1A9yLTj6C7uRrGEwP9ERBSa4+BipP/Os3SAEvaAYHPSI3yFnQ
+YkNC7ylIzXVQIPddHgDzNtuvwLoq/i2YmTBg4xzdPfgSsWPlurMw2PTdGAF1
+ymEaFLYl4vj/xU+Cl2wldtyV8dB8SJMsqhQ7Nn9sUfzQpGaftIL/pN8Nlg==
+
+  "],ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+
+Cell["\<\
+Implement and test the following Arnoldi initialization and update functions \
+in the language of your choice. You are going to build two functions \
+(ArnoldiInitialize and ArnoldiUpdate) with the following specifications.\
+\>", "Text",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8568588874070635`*^9, 3.856858894760231*^9}, {
+   3.857224357045904*^9, 3.857224367132491*^9}, {3.8883218730894847`*^9, 
+   3.888322080117072*^9}, 
+   3.888322884274124*^9},ExpressionUUID->"19c34891-b4a5-4bb2-9167-\
+f8ac0b4049d9"],
+
+Cell[TextData[{
+ "ArnoldiInitialize\nInput: A vector ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"b", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", "m"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2347ac1a-e65d-4c3f-98bf-b12218231e9d"],
+ " and a maximum subspace dimension ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"d", ">", "3"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e85c096e-a161-48e6-ad4d-e7dfd5f5192a"],
+ ".\nOutput a structure or set containing space for a set of orthogonal \
+vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Q", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"m", "\[Times]", 
+      RowBox[{"(", 
+       RowBox[{"d", "+", "1"}], ")"}]}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d9c140a1-b6aa-4185-8f07-ff0d6251797a"],
+ ", and space for a small almost Hessenberg matrix ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"H", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"d", "+", "1"}], ")"}], "\[Times]", "d"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "3f1d7a5a-90c0-4f9f-8cde-cef566f0d914"],
+ ", and a counter ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "\[LessEqual]", "n", "\[LessEqual]", "d"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e04fef2a-9204-427f-8d66-54db373e81c2"],
+ "+1.  The plan is to initialize Algorithm 33.1 to run a maximum of\nd times. "
+}], "Text",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8568588874070635`*^9, 3.856858894760231*^9}, {
+   3.857224357045904*^9, 3.857224367132491*^9}, {3.8883218730894847`*^9, 
+   3.888321985557301*^9}, {3.888322086249674*^9, 3.888322244269878*^9}, {
+   3.8883223253851423`*^9, 3.888322449733154*^9}, {3.888322482157875*^9, 
+   3.888322559125352*^9}, {3.888322610253297*^9, 3.888322634147745*^9}, {
+   3.888322722151134*^9, 3.8883227874352436`*^9}, {3.8883228188901014`*^9, 
+   3.888322879764698*^9}, {3.888322934117896*^9, 
+   3.8883229615851016`*^9}},ExpressionUUID->"829124c7-514a-4eb7-b62f-\
+46bee5e85e2a"],
+
+Cell[TextData[{
+ "ArnoldiUpdate\nInput: A matrix ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", "\[Element]", 
+    SuperscriptBox["\[DoubleStruckCapitalR]", 
+     RowBox[{"m", "\[Times]", "m"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b5107e4b-5dc1-462d-9f1f-19822ed1a5b6"],
+ " and a structure of the form output by ArnoldiInitialize. The output should \
+be the Arnoldi structure updated according to one step of Algorithm 33.1. The \
+update should terminate in some reasonable manner when it runs out of space \
+in Q. "
+}], "Text",
+ CellChangeTimes->{{3.8470540488466187`*^9, 3.847054299041844*^9}, 
+   3.847054620646575*^9, {3.84705469788529*^9, 3.8470547053171043`*^9}, {
+   3.84705474014857*^9, 3.847054741548669*^9}, {3.84705479048367*^9, 
+   3.8470548010520067`*^9}, {3.847097256754077*^9, 3.8470972849056597`*^9}, {
+   3.847140756236305*^9, 3.847140780380496*^9}, {3.847141112793906*^9, 
+   3.847141123081209*^9}, {3.847141212815769*^9, 3.8471414441116858`*^9}, {
+   3.847141743880835*^9, 3.847141771661133*^9}, {3.847142998261689*^9, 
+   3.847143060799942*^9}, {3.8568588874070635`*^9, 3.856858894760231*^9}, {
+   3.857224357045904*^9, 3.857224367132491*^9}, {3.8883218730894847`*^9, 
+   3.888321985557301*^9}, {3.888322086249674*^9, 3.888322244269878*^9}, {
+   3.8883223253851423`*^9, 3.888322449733154*^9}, {3.888322482157875*^9, 
+   3.888322559125352*^9}, {3.888322610253297*^9, 3.888322634147745*^9}, {
+   3.888322722151134*^9, 3.8883227874352436`*^9}, {3.8883228188901014`*^9, 
+   3.888322923951129*^9}, {3.8883229678176336`*^9, 
+   3.888323092643657*^9}},ExpressionUUID->"67d09d30-7779-4353-b4bc-\
+ea1a610c9526"],
+
+Cell["\<\
+We are going to talk about this in class. I will set up a Canvas discussion \
+for questions. \
+\>", "Text",
+ CellChangeTimes->{{3.888323101931903*^9, 
+  3.888323144783111*^9}},ExpressionUUID->"56336bf8-71ea-40df-81d0-\
+143d827023ce"]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1268, 965},
+WindowMargins->{{Automatic, -1770}, {Automatic, -4}},
+TaggingRules->Association[
+ "PresenterSettings" -> Association["Dialogs" -> {}], "TryRealOnly" -> False],
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Aqua.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"d3600f56-471c-4d17-927e-fd0f85d98af5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 614, 11, 184, "Title",ExpressionUUID->"bb443c9e-1a1c-437e-b10c-400e63a30bb8"],
+Cell[1197, 35, 1016, 16, 83, "Text",ExpressionUUID->"19c34891-b4a5-4bb2-9167-f8ac0b4049d9"],
+Cell[2216, 53, 2634, 58, 184, "Text",ExpressionUUID->"829124c7-514a-4eb7-b62f-46bee5e85e2a"],
+Cell[4853, 113, 1656, 29, 150, "Text",ExpressionUUID->"67d09d30-7779-4353-b4bc-ea1a610c9526"],
+Cell[6512, 144, 243, 6, 50, "Text",ExpressionUUID->"56336bf8-71ea-40df-81d0-143d827023ce"]
+}, Open  ]]
+}
+]
+*)
+
