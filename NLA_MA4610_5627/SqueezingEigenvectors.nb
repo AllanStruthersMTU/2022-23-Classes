@@ -10,30 +10,165 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    148806,       2935]
-NotebookOptionsPosition[    147710,       2907]
-NotebookOutlinePosition[    148175,       2925]
-CellTagsIndexPosition[    148132,       2922]
+NotebookDataLength[    153506,       3071]
+NotebookOptionsPosition[    152313,       3042]
+NotebookOutlinePosition[    152778,       3060]
+CellTagsIndexPosition[    152735,       3057]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Dragging Eigenvectors Through a Matrix", "Title",
- CellChangeTimes->{{3.888412776843184*^9, 
-  3.8884128007107058`*^9}},ExpressionUUID->"499d70bc-ee15-43e0-be88-\
+Cell["Squeezing Eigenvectors Through a Matrix", "Title",
+ CellChangeTimes->{{3.888412776843184*^9, 3.8884128007107058`*^9}, {
+   3.8886544842886496`*^9, 3.888654486184933*^9}, 
+   3.888655701247183*^9},ExpressionUUID->"499d70bc-ee15-43e0-be88-\
 baf8c72a7130"],
 
 Cell["\<\
 Lots of folks will tell you that the effect of a shifted Francis QR step is \
-to drag eigenvectors associated with eigenvectors near the shift towards the \
-back of the matrix. This is an attempt to demonstrate this effect with an \
+to squeeze eigenvectors associated with eigenvectors near the shift towards \
+the back of the matrix. This is an attempt to demonstrate this effect with an \
 animation? \
 \>", "Text",
- CellChangeTimes->{{3.888412805608527*^9, 
-  3.8884128956188045`*^9}},ExpressionUUID->"b4fcd4ec-1e56-48be-ab6c-\
+ CellChangeTimes->{{3.888412805608527*^9, 3.8884128956188045`*^9}, {
+  3.8886544900158916`*^9, 
+  3.888654491958638*^9}},ExpressionUUID->"b4fcd4ec-1e56-48be-ab6c-\
 b04133fcd503"],
+
+Cell[TextData[{
+ "The first question is how to measure how close the columns of an orthogonal \
+matrix ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Q", "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox["q", "1"], ",", 
+      SubscriptBox["q", "2"], ",", "\[Ellipsis]", ",", 
+      SubscriptBox["q", "n"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "130dba23-6bab-4f9e-b4f4-338e9f0d45f3"],
+ " are to a normalized vector v?  One good answer to this is the cosine of \
+the angle between the vector and the column. This is simply\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cos", "[", 
+      SubscriptBox["\[Theta]", "k"], "]"}], "=", 
+     RowBox[{"<", 
+      SubscriptBox["q", "k"]}]}], ",", 
+    RowBox[{"v", ">"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e65c2cd0-e205-454b-93e4-d6d53e95ad3e"],
+ "\nwhich gets called a \[OpenCurlyDoubleQuote]direction cosine\
+\[CloseCurlyDoubleQuote] and is frequently written ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4cd0a13c-06e3-4534-9bd7-27f5abe39feb"],
+ ". The vector ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["q", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "49769f76-e081-4ecf-b4a8-54740980a3f8"],
+ " is parallel to ",
+ Cell[BoxData[
+  FormBox["v", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "64925dfe-5c9e-41bc-b314-8bb522112b35"],
+ " if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"|", 
+     SubscriptBox["c", "k"], "|"}], "=", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f219b3be-982c-4ca7-a764-4d0b029df69d"],
+ " and perpendicular if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["c", "k"], "=", "0"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fda2d620-b81a-466f-b400-57512dfd8956"],
+ ". If the orthogonal ",
+ Cell[BoxData[
+  FormBox["Q", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c46a97f2-d8b2-4a97-8aba-86caee103b98"],
+ " is square (i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"n", "=", "m"}], ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "302ee390-e5d5-43e7-8151-65288f0711c1"],
+ " the columns exhaust the available directions and \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"k", "=", "1"}], "m"], 
+     SubsuperscriptBox["c", "k", "2"]}], "=", "1"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d608f5d2-aa9d-41a5-9aaf-e5f074ab22a9"],
+ ". \nIf you think about this it means that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"Q", "\[Transpose]"}], ".", "v"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8714aecc-28b5-40c6-912c-709b0d7f55e8"],
+ " gives the vector of direction cosines. If I have ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"V", "=", 
+    RowBox[{"[", 
+     RowBox[{
+      SubscriptBox["v", "1"], "|", 
+      SubscriptBox["v", "2"], "|", "\[Ellipsis]", "|", 
+      SubscriptBox["v", "b"]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a52a6e9b-670c-4f57-817d-f4adf5fa23c1"],
+ " then the matrix\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"Q", "\[Transpose]"}], ".", "V"}], "=", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Q", "\[Transpose]"}], ".", 
+       SubscriptBox["v", "1"]}], "|", 
+      RowBox[{
+       RowBox[{"Q", "\[Transpose]"}], ".", 
+       SubscriptBox["v", "2"]}], "|", "\[Ellipsis]", "|", 
+      RowBox[{
+       RowBox[{"Q", "\[Transpose]"}], ".", 
+       SubscriptBox["v", "b"]}]}], "]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "9e15504d-2afe-4e27-a15d-9280a56ec045"],
+ "\ngives the set of direction cosines.  If I plot the matrix I can see which \
+of the columns in Q almost line up (since we do not care about the \
+\[PlusMinus] signs) with each of the ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "1"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "cab3ddf5-fb18-4e23-9f61-7956bbb6c8f7"],
+ " etc.  "
+}], "Text",
+ CellChangeTimes->{{3.888654503453186*^9, 3.8886550527759557`*^9}, {
+  3.888655589880603*^9, 3.8886557078671646`*^9}, {3.888656269972365*^9, 
+  3.8886567163813677`*^9}},ExpressionUUID->"d39d013e-a962-4fae-9135-\
+5039fc10f8d9"],
 
 Cell[CellGroupData[{
 
@@ -2925,16 +3060,17 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 183, 3, 122, "Title",ExpressionUUID->"499d70bc-ee15-43e0-be88-baf8c72a7130"],
-Cell[766, 27, 396, 8, 72, "Text",ExpressionUUID->"b4fcd4ec-1e56-48be-ab6c-b04133fcd503"],
+Cell[580, 22, 259, 4, 122, "Title",ExpressionUUID->"499d70bc-ee15-43e0-be88-baf8c72a7130"],
+Cell[842, 28, 450, 9, 72, "Text",ExpressionUUID->"b4fcd4ec-1e56-48be-ab6c-b04133fcd503"],
+Cell[1295, 39, 4470, 131, 303, "Text",ExpressionUUID->"d39d013e-a962-4fae-9135-5039fc10f8d9"],
 Cell[CellGroupData[{
-Cell[1187, 39, 3771, 101, 393, "Input",ExpressionUUID->"d08db065-50a7-47a6-a073-472cc2bedcef"],
-Cell[4961, 142, 1826, 46, 88, "Output",ExpressionUUID->"662044e2-0781-49ad-89f5-1ef5663023db"],
-Cell[6790, 190, 124212, 2345, 577, "Output",ExpressionUUID->"a4f7fc19-4340-45d5-a751-785c25395b07"]
+Cell[5790, 174, 3771, 101, 393, "Input",ExpressionUUID->"d08db065-50a7-47a6-a073-472cc2bedcef"],
+Cell[9564, 277, 1826, 46, 88, "Output",ExpressionUUID->"662044e2-0781-49ad-89f5-1ef5663023db"],
+Cell[11393, 325, 124212, 2345, 576, "Output",ExpressionUUID->"a4f7fc19-4340-45d5-a751-785c25395b07"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[131039, 2540, 203, 3, 35, "Input",ExpressionUUID->"3b36d276-a183-4e38-8106-7a107928749a"],
-Cell[131245, 2545, 16437, 358, 252, "Output",ExpressionUUID->"de1e157e-56b5-44b8-bcfc-4c121d291d96"]
+Cell[135642, 2675, 203, 3, 35, "Input",ExpressionUUID->"3b36d276-a183-4e38-8106-7a107928749a"],
+Cell[135848, 2680, 16437, 358, 252, "Output",ExpressionUUID->"de1e157e-56b5-44b8-bcfc-4c121d291d96"]
 }, Open  ]]
 }, Open  ]]
 }
